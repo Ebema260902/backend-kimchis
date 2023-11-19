@@ -1,0 +1,183 @@
+/* Styles for a grid container displaying dishes. */
+.dishes-container{
+    display: grid;
+    width: 78vw;
+    height: 525px;
+    margin: 2rem auto;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    bottom: 2rem;
+}
+.dishes-container-php{
+    display: grid;
+    width: 78vw;
+    height: 1639px;
+    margin: 2rem auto;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 1.5rem;
+   
+}
+
+.dishes-container-related{
+    display: grid;
+    width: 78vw;
+    height: 525px;
+    margin: 2rem auto;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    position: relative;
+    top: 12rem;
+}
+
+
+
+/* Styles for individual dish items */
+.dish{
+    display: grid;
+    background: var(--clr-white);
+    text-align: center;
+    padding: rem 1rem;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 6px .25px #c7c5c5;
+}
+.dish-php-homepage{
+    display: grid;
+    background: var(--clr-white);
+    text-align: center;
+    padding: 2rem 1rem;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 6px .25px #c7c5c5;
+}
+
+/* Styles for bowl image */
+.bowl-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5rem;
+}
+
+
+/* Styles for a container with buttons */
+.btn-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5rem;
+}
+
+/* Styles for a container with app-related elements */
+.cta-app-container{
+    display: flex;
+    gap: .5rem;
+}
+
+
+/* Styles for edit-dishes */
+
+.form-items{
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    margin: .5rem 0;
+    align-items: center;
+    height: 2rem;
+}
+
+/* Media query targeting screens with a maximum width of 767.98 pixels. */
+@media (max-width: 767.98px){
+
+    .dishes-container{
+        display: flex;
+        flex-wrap: nowrap;
+        width: 78vw;
+        height: 525px;
+        margin: 2rem auto;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        overflow-x: auto;
+    }
+}
+
+/* Styles for screens higher than 1366px width and 952px height (iPad Pro 12.9" 5th gen) */
+@media (min-width: 768px) and (max-width: 1367px) {
+    
+    .dishes-container{
+        display: grid;
+        width: 90vw;
+        height: 525px;
+        margin: 2rem auto;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        bottom: 2rem;
+    }
+}
+
+/* Styles for screens higher than 1366px wifht and 952px height (iPhone 12/13 Pro Max, 14 Plus) */
+@media (max-width: 747px) {
+    .dishes-container{
+        display: flex;
+        flex-wrap: nowrap;
+        width: 78vw;
+        height: 525px;
+        margin: 2rem auto;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        overflow-x: auto;
+        position: relative;
+        left: 1rem;
+        border: 10px, solid;
+    }
+
+    .dishes-container-related{
+        display: flex;
+        flex-wrap: nowrap;
+        width: 78vw;
+        height: 525px;
+        margin: 2rem auto;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        overflow-x: auto;
+        position: relative;
+        left: 1rem;
+        border: 10px, solid;
+        bottom: 20rem;
+    }
+}
+
+
+/* Styles for screens min height 1210and max width 1800px (Galaxy Tab 10.1) */
+@media (min-height: 1190px) and (max-width: 1800px) {
+    .dishes-container{
+        display: flex;
+        flex-wrap: nowrap;
+        width: 90vw;
+        height: 525px;
+        margin: 2rem auto;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        overflow-x: auto;
+        position: relative;
+        left: 1rem;
+        border: 10px, solid;
+    }
+}
+
+
+/* Styles for screens min height 1080and max width 1920px (Desktop) */
+@media (min-height: 1070px) and (max-width: 1930px) {
+    .dishes-container{
+        display: flex;
+        flex-wrap: nowrap;
+        width: 95vw;
+        height: 525px;
+        margin: 2rem auto;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        overflow-x: auto;
+        position: relative;
+        left: 10rem;
+        border: 10px, solid;
+    }
+}
+

@@ -1,0 +1,89 @@
+
+/* Style for the footer container */
+.footer-container{
+    width: 100%; 
+    color: var(--clr-white);
+    margin: 2rem 0 0;
+    display: grid;
+    background: #62331b;
+    position: relative;
+    top: 7rem;
+}
+
+/* Style for the footer title */
+.footer-title{
+    font-size: 1.9rem;
+    position: relative;
+    bottom: .5rem;
+    letter-spacing: 2px; /
+}
+
+/* Styles for the text content inside the footer. */
+.footer-text{
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: normal;
+    color: rgb(255, 255, 255);
+    line-height: 1.9rem;
+    position: relative;
+    bottom: 1.5rem;
+    
+}
+
+/* Styles for the main content grid within the footer. */
+.footer-content{
+    display: grid;
+    width: 80vw;
+    margin: 2rem auto;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;  
+}
+
+/* Styles for the grid containing footer links. */
+.footer-links{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(146px, 1fr));
+    gap: 1rem;  
+}
+
+/* Styles for the list inside the footer links. */
+.nav-footer-list{
+    display: grid;
+    padding: 0;
+    list-style-type: none;
+    gap: 1rem;
+}
+
+/* Styles for footer links, setting text color, removing underlines, and adjusting font size. */
+.nav-footer-link{
+   color: var(--clr-white );
+   text-decoration: none;
+   font-size: var(--fs-md);
+}
+
+/* Styles for legal information in the footer, centered text. */
+.footer-legal{
+    text-align: center;
+    font-size: var(--fs-md);
+}
+
+/* Styles for the download app section */
+.download-app{
+    display: grid;
+    width: 80vw;
+    margin: auto;
+    position: relative;
+    bottom: 5rem;
+}
+
+
+/* KOREAN */
+
+/* Styles for Korean version of footer text with specific font size. */
+.footer-text-korean{
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    color: rgb(255, 255, 255);
+    line-height: 1.9rem;
+}

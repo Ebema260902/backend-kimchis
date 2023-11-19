@@ -1,0 +1,40 @@
+/* Styles for a container element */
+.hero-container{
+    width: 100%; 
+    background: #F5F5F5;
+    background-position: center;
+    background-size: cover;
+    color: var(--clr-white);
+    height: min(60rem, 50rem, 55rem);
+    position: relative;
+    z-index: 0;
+    width: 100%;
+}
+
+/* Styles for a container element specific to dish hero image */
+.hero-container-dish{
+    width: 100%; 
+    background: #F5F5F5;
+    background-position: center;
+    background-size: cover;
+    color: var(--clr-white);
+    height: min(60rem, 30rem, 55rem);
+    width: 100%;
+   
+}
+
+
+/* Media query targeting screens with a maximum width of 767.98 pixels. */
+@media (max-width: 767.98px){
+    .hero-container{
+        height: min(60rem, 33rem, 55rem);
+    }
+}
+
+
+/* Styles for screens min height 1210and max width 1800px (Galaxy Tab 10.1) */
+@media (min-height: 1190px) and (max-width: 1800px) {
+    .hero-container{
+        height: min(60rem, 51.5rem, 55rem);
+    }
+}

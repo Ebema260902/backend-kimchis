@@ -1,0 +1,23 @@
+/* Sets the default font size for the HTML*/
+html{
+    font-size: 16px;
+}
+
+
+/* Styles for the body element */
+body{
+    overflow-x: hidden;
+    background: white;
+    font-family: var(--ff-secondary);
+    display: grid;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+}
+
+/* Media query targeting screens with a maximum width of 767.98 pixels. */
+@media (max-width: 767.98px){
+    body{
+        overflow-x: hidden;
+    }
+}

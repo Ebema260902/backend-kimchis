@@ -1,0 +1,1101 @@
+/* Defines a container with 100% width, centered horizontally on the page. 
+   Hides overflowing content. */
+.main-container{
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.main-container-dish{
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+
+/* Styles for buttons */
+.btn{
+    color: var(--clr-white);
+    text-decoration: none;
+    font-size: var(--fs-md);
+    display: flex;
+    align-items: center;
+    padding: .5rem 2rem;
+    background: #646B49;
+    border-radius: .4rem;
+    text-decoration: none;
+    position: relative;
+    right: 25rem;
+}
+
+.btn-get-started{
+    color: var(--clr-white);
+    text-decoration: none;
+    font-size: var(--fs-md);
+    display: flex;
+    align-items: center;
+    padding: .5rem 2rem;
+    background: #646B49;
+    border-radius: .4rem;
+    text-decoration: none;
+    position: relative;
+    right: 32rem;
+}
+
+.btn-get-started-homepage{
+    color: var(--clr-white);
+    text-decoration: none;
+    font-size: var(--fs-md);
+    display: flex;
+    align-items: center;
+    padding: .5rem 2rem;
+    background: #646B49;
+    border-radius: .4rem;
+    text-decoration: none;
+    position: relative;
+    right: 32rem;
+}
+
+
+
+/* Styles for login button  */
+.btn-login{
+    display: flex;
+    align-items: center;
+    padding: .5rem 2rem;
+    background: #83924B;
+    border-radius: .5rem;
+    text-decoration: none;
+}
+
+
+/*  Styles for sign-up button */
+.btn-sign-up{
+    display: flex;
+    align-items: center;
+    padding: .5rem 2rem;
+    background: #646B49;
+    border-radius: .5rem;
+    text-decoration: none;
+}
+
+
+/* Styles for the green circle in featured dishes*/
+.green-circle {
+    width: 540px; 
+    height: 540px; 
+    background-image: url('../../imgs/imgsproyect/Circle.png'); 
+    background-size: cover; 
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 14%;
+    left: 77%; 
+    transform: translate(-50%, -50%); 
+    border-radius: 50%; 
+    z-index: -1; 
+}
+
+
+/* Styles for main image in the homepage */
+.image-header{
+    width: 55rem; 
+    height:45.6rem; 
+    overflow: hidden;
+    position: relative;
+    bottom: 37.5rem;
+    left: 55rem;
+    border-bottom-left-radius: 5rem;
+}
+
+.image-header-homepage{
+    width: 55rem; 
+    height:45.6rem; 
+    overflow: hidden;
+    border-bottom-left-radius: 5rem;
+    position: relative;
+    bottom: 37.5rem;
+    left: 64rem;
+    
+}
+
+
+/* Styles for the kimchis logo */
+.logo-image{
+    position: relative;
+    left: 7rem;
+}
+
+/*Container for featured dishes in a grid layout */
+.featured-dishes-container{
+    display: grid;
+    position: relative;
+    
+    margin-bottom: 11rem;
+}
+
+/* Cart and info buttons with background images and specific positioning. */
+.btn-cart,
+.btn-info {
+    display: flex;
+    width: 10px;
+    height: auto;
+    align-items: center;
+    padding: .5rem 2rem;
+    background-color: #646B49; 
+    border-radius: 1.5rem;
+    text-decoration: none;
+    z-index: 1;
+    background-size: cover; 
+}
+
+/* Specific styles for the cart button */
+.btn-cart {
+    margin: auto;
+    padding: 1.1rem 2rem;
+    position: relative;
+    left: 2.8rem;
+    bottom: 1rem;
+    z-index: 2;
+    background-image: url('../../imgs/imgsproyect/image-cart.png'); 
+    background-size: cover;
+}
+
+/* Specific styles for the information button */
+.btn-info {
+    margin: auto;
+    padding: 1.1rem 2rem;
+    position: relative;
+    right: 3.6rem;
+    bottom: 3.2rem;
+    z-index: 2;
+    background-image: url('../../imgs/imgsproyect/image-!.png'); 
+    background-size: cover;
+}
+
+
+/* Icon with maximum size and specific right margin. */
+.icon-img {
+    max-width: 20px; 
+    max-height:20px;
+    margin-right: 5px;   
+}
+
+/* Dish thumbnails with relative positioning and padding. */
+.dish-thumb{
+    display: flex;
+    position: relative;
+    padding: 0 1rem;
+    
+}
+
+/* Styles for the dish image */
+.dish-image{
+    display: block;
+    width: 237px;
+    height: 130px;
+    border-radius: 1rem;
+    position: relative;
+    left: 2.6rem;
+    bottom: 0rem;
+}
+
+.dish-image-php{
+    display: block;
+    width: 237px;
+    height: 130px;
+    border-radius: 1rem;
+    position: relative;
+    left: .6rem;
+    bottom: 4rem;
+}
+
+/* Dish price label with absolute position and specific styles. */
+.dish-price{
+    display: block;
+    position: absolute;
+    background-color: var(--clr-white);
+    color: black;
+    width: 37px;
+    height: 26px;
+    text-align: center;
+    padding: .5rem 1.7rem;
+    border-radius: 0.4rem;
+    left: 50%;
+    transform: translate(-50% , 0);
+    top: 2.5rem;
+    border: 1px solid #000;
+}
+
+
+/* Individual dish price with specific font, size, color, and position. */
+.individual-dish-price{
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+    color: black;
+    position: relative;
+    left: 37.3rem;
+    bottom: 18.3rem;
+}
+
+
+/* Style for the decoration image */
+.bowl-img{
+    position: relative;
+    width: 300px;
+    height: 300px;
+    top: 11rem;
+}
+
+
+/* DISH HTML */
+
+/* Image space in the dish page */
+.dish-image-space{
+    width: 450px;
+    height: 300px;
+    position: relative;
+    left: 6.5rem;
+    top: 3rem;
+    border-radius: 1rem;
+    object-fit: cover; 
+}
+
+.dish-container-space{
+    width: 100%; /* Set the desired width of the container */
+    height: 400px; /* Set the desired height of the container */
+    overflow: hidden;
+}
+
+
+/* container of the individual dish in Dish page */
+.dish-container{
+    width:70rem;
+    height: 38rem;
+    background-color: white;
+    box-shadow: 10px;
+    border-radius: 1rem;
+    position: relative;
+    left: 13rem;
+    bottom: 0rem;
+}
+
+/* styles for the logos from features in the individual dish */
+.individual-dish-logos{
+    display: flex;
+    gap: 8.5rem;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    left: 8.9rem;
+    top: 2.5rem;
+}
+
+/* style for the arrow to come back to the homepage */
+.arrow-back{
+    position: relative;
+    bottom: 46rem;
+    left: 1rem;
+}
+
+/* CHECKBOX */
+/* Position for the checkbox to change language */
+.checkbox-container{
+    position: relative;
+    left: 70%;
+}
+
+/* defines color for "english" text */
+.en{
+    color: #ffffff;
+}
+
+/* defines color for "korean" text */
+.co{
+    color: #00a1ff;
+}
+
+/* defines position of the check */
+.check{
+    position: relative;
+    width: 50px;
+    bottom: 5px;
+}
+
+/* Styles for the check before clicked */
+.check:before{
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 25px;
+    background: #333;
+    border-radius: 25px;
+}
+
+/* Styles for the check after clicked  */
+.check:after{
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 25px;
+    transition: 0.25;
+    border: 2px solid #333;
+    box-sizing: border-box;
+}
+
+/* Styles for checkbox element when it is checked. */
+.check:checked:after{
+    left: 25px;
+    border: 2px solid #00a1ff;
+}
+
+/* Styles for the checkbox element's background when it is checked.*/
+.check:checked:before{
+    background: #00a1ff;
+}
+
+
+
+/*specifications.php*/
+
+
+.image-header-in-specifications{
+    width: 55rem; 
+    height:45.6rem; 
+    overflow: hidden;
+    position: relative;
+    bottom: 37.5rem;
+    left: 55rem;
+    border-bottom-left-radius: 5rem;
+}
+
+/* COLUMN 1 */
+.main-container-dish{
+    width: 100%;
+    height: auto;
+    background-color: #F5F5F5;
+    
+}
+
+.container-wrapper {
+    display: flex;
+    gap: 20rem;
+    position: relative;
+
+    left: 5rem;
+  }
+
+.container-dish-elements{
+    overflow-x: hidden;
+    width:45rem;
+    height: 85rem;
+    position: relative;
+    background-color: white;
+    border-radius: 1rem;
+    left: 8%;
+    top: 8rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.10);
+}
+
+
+.image-element{
+    position: relative;
+    left: 15%;
+    top: 5rem;
+    border-radius: 2rem;
+}
+
+
+.container-image-element{
+    overflow-x: hidden;
+    width:40rem;
+    height: 25rem;
+    position: relative;
+    background-color: rgb(224, 219, 219);
+    border-radius: 1rem;
+    left: 5.7%;
+    top: 5rem;
+    z-index: 0;
+
+}
+
+.container-logos{
+    display: flex;
+    gap: 12rem;
+    position: relative;
+    top: 6rem;
+    left: 8.5%;
+    z-index: 1;
+}
+
+.logo-element{
+    width: 4rem;
+    height: auto;
+}
+
+.logo-element-family{
+    width: 5rem;
+    height: 3rem;
+    position: relative;
+    top: .5rem;
+}
+
+.logo-element-main{
+    width: 4rem;
+    height: auto;
+    position: relative;
+    right: 1rem;
+}
+
+.element-dish-name{
+    font-size:2rem;
+    font-family: 'Inter', sans-serif;
+    font-weight:bold;
+    position: relative;
+    top: 9rem;
+    left: 33%;
+}
+
+.container-text{
+    display: flex;
+    gap: 10rem;
+    position: relative;
+    top: 6rem;
+    left: 9%;
+    z-index: 1;
+}
+
+.text-feature{
+    font-size:1.2rem;
+    font-family: 'Inter', sans-serif;
+    font-weight:500;
+    position: relative;
+}
+.text-feature-main{
+    font-size:1.2rem;
+    font-family: 'Inter', sans-serif;
+    font-weight:500;
+    position: relative;
+    right:.4rem;
+}
+.text-feature-featured{
+    font-size:1.2rem;
+    font-family: 'Inter', sans-serif;
+    font-weight:500;
+    position: relative;
+    left: .6rem;
+}
+
+.element-price{
+    font-size:2rem;
+    font-family: 'Inter', sans-serif;
+    font-weight:500;
+    position: relative;
+    top: 8.5rem;
+    left: 40%;
+}
+
+.description-dish{
+    font-size:20px;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    position: relative;
+    top: 8rem;
+    right: 1rem;
+}
+
+/* COLUMN 2 */
+
+.container-specifications{
+    overflow-x: hidden;
+    overflow: hidden;
+    width:35rem;
+    height: 85rem;
+    position: relative;
+    background-color: white;
+    border-radius: 1rem;
+    right: 8rem;
+    top: 8rem;
+    
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.10);
+    z-index: 0;
+}
+
+
+.text-specifications{
+    font-size:2rem;
+    font-family: 'Inter', sans-serif;
+    font-weight:bold;
+    position: relative;
+    left: 10.5rem;
+   
+    z-index: 2;
+}
+.text-subtitles{
+    font-size: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    left: 3rem;
+    z-index: 2;
+}
+
+.sauce-items{
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    margin: 3rem 0;
+    align-items: center;
+    height: 2rem;
+    position: relative;
+    left: 3rem;
+    z-index: 2; 
+    
+}
+
+
+
+.label-suace{
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: lighter;
+    margin: 0;
+}
+
+.input-sauce{
+    width: 8rem;
+    border-radius: 1rem;
+    position: relative;
+    margin: 0;
+}
+
+.line-div{
+    position: relative;
+    z-index: 2;
+    left: 2rem;
+}
+
+.total-price{
+    font-size: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    left: 26rem;
+    bottom: 3rem;
+    z-index: 2;
+}
+
+.btn-add-to-cart{
+    color: var(--clr-white);
+    text-decoration: none;
+    font-size: var(--fs-md);
+    display: flex;
+    align-items: center;
+    padding: .5rem 2rem;
+    background: #646B49;
+    border-radius: .4rem;
+    text-decoration: none;
+    position: relative;
+    bottom: 2rem;
+}
+
+
+    
+
+
+
+
+/* Media query targeting screens with a maximum width of 767.98 pixels. */
+@media (max-width: 767.98px){
+    .main-container{
+        width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .logo-image{
+        position: relative;
+        left: 1rem;
+    }
+
+    .image-header{
+        width: 24rem; 
+        height:20rem; 
+        opacity:20%;
+        overflow: hidden;
+        position: relative;
+        bottom: 33rem;
+        left: 0;
+        border-bottom-left-radius: 5rem;
+        border-bottom-right-radius: 5rem;
+    }
+    .image-header-homepage{
+        width: 24rem; 
+        height:20rem; 
+        opacity:20%;
+        overflow: hidden;
+        position: relative;
+        bottom: 33rem;
+        left: 0;
+        border-bottom-left-radius: 5rem;
+        border-bottom-right-radius: 5rem;
+    }
+
+
+    .btn-login{
+        display: flex;
+        align-items: left;
+        padding: .5rem 2rem;
+        background: #83924B;
+        border-radius: .5rem;
+        text-decoration: none;
+    }
+    
+    .btn-sign-up{
+        display: flex;
+        align-items: left;
+        padding: .5rem 2rem;
+        background: #646B49;
+        border-radius: .5rem;
+        text-decoration: none;
+    }
+
+
+    .green-circle {
+        width: 300px; 
+        height: 300px; 
+        
+    }
+
+
+    /* DISH */
+
+    .dish-container{
+        overflow-x: hidden;
+        width:46rem;
+        position: relative;
+        left: -4rem;
+        bottom: 8rem;
+    }
+
+    .dish-image-space{
+        max-width: 22rem;
+        max-height: auto;
+        
+        position: relative;
+        left: 13.5rem;
+        /* top: 3rem; */
+       
+    }
+
+
+    .individual-dish-price{
+        position: relative;
+        left: 9.1rem;
+        bottom: 10.3rem;
+    }
+
+    .individual-dish-logos{
+        width: 41px;
+        height: 35px;
+        position: relative;
+        left: 12.9rem;
+        top: 5rem;
+    }
+
+    .arrow-back{
+        position: relative;
+        bottom: 70%;
+        left: 2rem;
+    }
+
+
+
+    /* SPECIFICATIONS.PHP */
+
+    .image-header-in-specifications{
+        width: 100%; 
+        height:20rem; 
+        opacity:20%;
+        overflow: hidden;
+        position: relative;
+        bottom: 27rem;
+        left: 0;
+        z-index: 1;
+        border-bottom-left-radius: 5rem;
+        border-bottom-right-radius: 5rem;
+    }
+
+    .container-wrapper {
+        display: grid;
+        gap: 20rem;
+        position: relative;
+    
+        left: 5rem;
+      }
+    
+      /* COLUMN 1 */
+                .main-container-dish{
+                    width: 115%;
+                    height: auto;
+                    background-color: #F5F5F5;
+                    position: relative;
+                    right: 1.5rem;
+                    bottom: 1rem;
+                    
+                }
+
+                .container-dish-elements{
+                    overflow-x: hidden;
+                    width:20rem;
+                    height: 55rem;
+                    position: relative;
+                    background-color: white;
+                    border-radius: 1rem;
+                    left: 0%;
+                    top: 8rem;
+                    box-shadow: 0 0 5px rgba(0, 0, 0, 0.10);
+                }
+
+
+                .image-element{
+                    position: relative;
+                    left: 15%;
+                    top: 5rem;
+                    border-radius: 2rem;
+                }
+
+
+                .container-image-element{
+                    overflow-x: hidden;
+                    width:18rem;
+                    height: 15rem;
+                    position: relative;
+                    background-color: rgb(224, 219, 219);
+                    border-radius: 1rem;
+                    left: 5.7%;
+                    top: 5rem;
+                    z-index: 0;
+
+                }
+
+                .container-logos{
+                    display: flex;
+                    gap: 4.5rem;
+                    position: relative;
+                    top: 6rem;
+                    left: 3rem;
+                    z-index: 1;
+                }
+
+                .logo-element{
+                    width: 2.3rem;
+                    height: 2.5rem;
+                    position: relative;
+                    top: .3rem;
+                    right: 1.5rem;
+                }
+
+                .logo-element-family{
+                    width: 2.6rem;
+                    height: 2rem;
+                    position: relative;
+                    top: .5rem;
+                }
+
+                .logo-element-main{
+                    width: 2rem;
+                    height: 3rem;
+                    position: relative;
+                    right: 1rem;
+                }
+
+                .element-dish-name{
+                    font-size:1rem;
+                    font-family: 'Inter', sans-serif;
+                    font-weight:bold;
+                    position: relative;
+                    top: 9rem;
+                    left: 33%;
+                }
+
+                .container-text{
+                    display: flex;
+                    gap: 2.8rem;
+                    position: relative;
+                    top: 6rem;
+                    left: 15%;
+                    z-index: 1;
+                }
+
+                .text-feature{
+                    font-size:.7rem;
+                    font-family: 'Inter', sans-serif;
+                    font-weight:500;
+                    position: relative;
+                    
+                }
+                .text-feature-main{
+                    font-size:.7rem;
+                    font-family: 'Inter', sans-serif;
+                    font-weight:500;
+                    position: relative;
+                    right:.4rem;
+                }
+                .text-feature-featured{
+                    font-size:.7rem;
+                    font-family: 'Inter', sans-serif;
+                    font-weight:500;
+                    position: relative;
+                    right: 1rem;
+                    
+                }
+
+                .element-price{
+                    font-size:1.5rem;
+                    font-family: 'Inter', sans-serif;
+                    font-weight:500;
+                    position: relative;
+                    top: 8.5rem;
+                    left: 40%;
+                }
+
+                .description-dish{
+                    font-size:15px;
+                    font-family: 'Inter', sans-serif;
+                    max-width: 17rem;
+                    text-align: center;
+                    position: relative;
+                    top: 8rem;
+                    left: 1.5rem;
+                }
+
+                            /* COLUMN 2 */
+
+                            .container-specifications{
+                                overflow-x: hidden;
+                                width:20rem;
+                                height: 85rem;
+                                position: relative;
+                                background-color: white;
+                                border-radius: 1rem;
+                                left: 0%;
+                                top: 1rem;
+                                box-shadow: 0 0 5px rgba(0, 0, 0, 0.10);
+                            }
+
+
+                            .text-specifications{
+                                font-size:2rem;
+                                font-family: 'Inter', sans-serif;
+                                font-weight:bold;
+                                position: relative;
+                                left: 3rem;
+                            
+                                z-index: 2;
+                            }
+                            .text-subtitles{
+                                font-size: 1.5rem;
+                                font-family: 'Inter', sans-serif;
+                                position: relative;
+                                left: 2rem;
+                                z-index: 2;
+                            }
+
+                            .sauce-items{
+                                display: grid;
+                                grid-auto-flow: column;
+                                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                                margin: 3rem 0;
+                                align-items: center;
+                                height: 2rem;
+                                position: relative;
+                                left: 1rem;
+                                z-index: 2; 
+                                
+                            }
+
+
+
+                            .label-suace{
+                                font-size: 1rem;
+                                font-family: 'Inter', sans-serif;
+                                font-weight: lighter;
+                                margin: 0;
+                            }
+
+                            .input-sauce{
+                                width: 8rem;
+                                border-radius: 1rem;
+                                position: relative;
+                                margin: 0;
+                            }
+
+                            .line-div{
+                                position: relative;
+                                z-index: 2;
+                                left: 2rem;
+                            }
+
+                            .total-price{
+                                font-size: 1.5rem;
+                                font-family: 'Inter', sans-serif;
+                                position: relative;
+                                left: 16rem;
+                                bottom: 3rem;
+                                z-index: 2;
+                            }
+                            .btn-get-started{
+                                color: var(--clr-white);
+                                text-decoration: none;
+                                font-size: var(--fs-md);
+                                display: flex;
+                                align-items: center;
+                                padding: .5rem 2rem;
+                                background: #646B49;
+                                border-radius: .4rem;
+                                text-decoration: none;
+                                position: relative;
+                                right: 0rem;
+                                bottom: 3rem;
+                            }
+            .image-header-in-specifications{
+                width: 100%; 
+                height:20rem; 
+                opacity:20%;
+                overflow: hidden;
+                position: relative;
+                bottom: 35rem;
+                left: 0;
+                z-index: 1;
+                border-bottom-left-radius: 5rem;
+                border-bottom-right-radius: 5rem;
+            }
+
+   
+}
+
+/* Styles for screens min height 425 and max width 747px (iPhone 12/13 Pro Max, 14 Plus) */
+@media (min-height: 425px) and (max-width: 747px){
+
+
+    /* .main-container-dish{
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        overflow: hidden;
+    } */
+
+    .image-header-in-specifications{
+        width: 100%; 
+        height:20rem; 
+        opacity:20%;
+        overflow: hidden;
+        position: relative;
+        bottom: 24rem;
+        left: 0;
+        z-index: 1;
+        border-bottom-left-radius: 5rem;
+        border-bottom-right-radius: 5rem;
+    }
+
+    .image-header{
+        width: 100%; 
+        height:20rem; 
+        opacity:20%;
+        overflow: hidden;
+        position: relative;
+        bottom: 33rem;
+        left: 0;
+        border-bottom-left-radius: 5rem;
+        border-bottom-right-radius: 5rem;
+    }
+    .image-header-homepage{
+        width: 100%; 
+        height:20rem; 
+        opacity:20%;
+        overflow: hidden;
+        position: relative;
+        bottom: 33rem;
+        left: 0;
+        border-bottom-left-radius: 5rem;
+        border-bottom-right-radius: 5rem;
+    }
+
+    .btn{
+        color: var(--clr-white);
+        text-decoration: none;
+        font-size: var(--fs-md);
+        display: flex;
+        align-items: center;
+        padding: .5rem 2rem;
+        background: #646B49;
+        border-radius: .4rem;
+        text-decoration: none;
+        position: relative;
+        right: 0;
+        bottom: 9rem;
+    }
+
+    .featured-dishes-container{
+        display: grid;
+        position: relative;
+        top: 11rem;
+    }
+
+}
+
+
+/* Styles for screens min height 1210and max width 1800px (Galaxy Tab 10.1) */
+@media (min-height:1792px) and (max-width: 1200px) {
+    .btn-sign-up{
+        width: 4rem;
+    } 
+
+    .btn-get-started-homepage{
+        right: 10rem;
+    }
+
+    .image-header-homepage{
+        width: 50rem; 
+        height:46.8rem; 
+        
+        overflow: hidden;
+        position: relative;
+      
+        right: 10rem;
+        border-bottom-left-radius: 5rem;
+        border-bottom-right-radius: 5rem;
+    }
+
+   
+}
+
+/* Styles for screens min height 1080and max width 1920px (Desktop) */
+@media (min-height: 1070px) and (max-width: 1930px) {
+    .image-header{
+        position: relative;
+        left: 50rem;
+        width: 70rem;
+    }
+
+    .image-header-in-specifications{
+        width: 55rem; 
+        height:45.6rem; 
+        overflow: hidden;
+        position: relative;
+        bottom: 37.5rem;
+        left: 70rem;
+        border-bottom-left-radius: 5rem;
+    }
+    .image-header-homepage{
+        position: relative;
+        left: 50rem;
+        width: 70rem;
+        position: relative;
+        right: 4rem;
+        bottom: 20rem;
+    }
+
+}
+
+

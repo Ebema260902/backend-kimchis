@@ -1,0 +1,151 @@
+/* Styles for the top navigation bar, */
+.top-nav{
+    background: #62331b;
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    margin-left: auto; 
+    position: relative;
+    z-index: 0;
+}
+
+/* Styles for the Korean version of the top navigation bar*/
+.top-nav-korean{
+    background: #62331b;
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    margin-left: auto;   
+}
+
+/* Styles for the navigation list */
+.nav-list{
+    text-emphasis-color: black;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    gap: 2rem;
+    list-style-type: none;
+    margin-left: 13rem;
+}
+
+
+/* Styles for the login button in the navigation list */
+.nav-list-login-btn{
+    text-emphasis-color: black;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    gap: 1rem;
+    list-style-type: none;
+    margin-left: 36rem;
+}
+
+/* Styles for navigation list links */
+.nav-list-link{
+   color: var(--clr-white);
+   text-decoration: none;
+   font-size: var(--fs-md);
+}
+
+/* Styles for navigation list links */
+.nav-list-link-specifications{
+    color: var(--clr-white);
+    text-decoration: none;
+    font-size: var(--fs-md);
+ }
+/* Media query targeting screens with a maximum width of 767.98 pixels. */
+@media (max-width: 767.98px){
+    .top-nav{
+        overflow-x: hidden;
+        overflow: hidden;
+        background: #62331b;
+        display: flex;
+        align-items: center;
+        margin-top: auto;
+        margin-left: auto;
+        margin-bottom: 1rem;
+        
+    }
+    
+    .nav-list{
+        display: flex;
+        position: fixed;
+        margin: 0;
+        top: 0;
+        right: 18rem;
+        width: 50%;
+        height: 100vh;
+        align-content: center;
+       
+        gap: 1rem;
+        text-align: right;
+        padding-left: 6rem;
+    }
+    .nav-list-link{
+        color: var(--clr-white);
+        text-decoration: none;
+        font-size: var(--fs-md);
+        position: relative;
+        left: 19.5rem;
+        bottom: 18rem;
+     }
+
+}
+
+/* Styles for screens min height 425px and max width and 747px height (iPhone 12/13 Pro Max, 14 Plus) */
+@media (min-height: 425px) and (max-width: 748px) {
+    .nav-list-link{
+        color: var(--clr-white);
+        text-decoration: none;
+        font-size: var(--fs-md);
+        position: relative;
+        left: 19.5rem;
+        bottom: 20.5rem;
+     }
+ 
+     /* specifications.php */
+     .top-nav{
+        background: #62331b;
+        display: flex;
+        align-items: center;
+        margin-top: auto;
+        margin-left: auto; 
+        position: relative;
+        z-index: 0;
+    }
+
+}
+
+/* Styles for screens min height 383px and max width and 844px height (Galaxy S22 Ultra) */
+@media (min-width: 383px) and (max-width: 844px) {
+    .nav-list-link{
+        color: var(--clr-white);
+        text-decoration: none;
+        font-size: var(--fs-md);
+        position: relative;
+        left: 19.5rem;
+        bottom: 23rem;
+     }
+
+     .nav-list-link-specifications{
+        color: var(--clr-white);
+        text-decoration: none;
+        font-size: var(--fs-md);
+        position: relative;
+        left: 19.5rem;
+        bottom: 21rem;
+     }
+    
+}
+
+
+/* Styles for screens min height 1210and max width 1800px (Galaxy Tab 10.1) */
+@media (min-height: 1190px) and (max-width: 1800px) {
+    .nav-list-login-btn{
+        width: 20px;
+        position: relative;
+        right: 12rem;
+    }
+}

@@ -1,0 +1,100 @@
+/*Logo y titulo de la página*/
+.logo{
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;  
+    position: relative;
+    left:6%
+}
+
+.logo span{
+    font-size: x-large;
+}
+
+.logo img{
+ padding: 5px 20px;
+}
+
+/*Imagen Inicio*/
+.img-container{
+    width: 100%;
+}
+
+.txt-container{
+ position: absolute;
+ left: 600px;
+ top: 400px;
+ font-size: 10rem;
+ color: white;
+}
+
+/*Rectangulo container*/
+
+.rectangle{
+    position: absolute;
+    background-color: #AB473E;
+    top: 130px;
+    left: 0px; 
+    width: 1300px; 
+    height: 120px;
+}
+
+.rectangle h1{
+    position: relative;
+    line-height: 40px; 
+    color: white;
+    font-size: 50px;
+    left: 10%;
+    
+}
+
+/*Platillos*/
+.cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 80%;
+    margin: auto;
+
+}
+
+.card{
+    padding: 5px;
+    border: 1px grey solid;
+    border-radius: 8px;
+    margin: 10px;
+    border-width: 2px;
+}
+
+
+.category-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+}
+
+.category-container h3{
+    margin-top: 150px;
+    text-align: center;
+    font-size: 35px;
+}
+.category-container img{
+    padding: 30px;
+}
+
+.button{
+    position: relative;
+    left: 80%;
+    border: none;
+    background: none;
+}
+
+
+
+
+
+
+
+

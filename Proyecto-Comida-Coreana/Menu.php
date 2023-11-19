@@ -1,0 +1,619 @@
+<?php
+    require_once '../database.php';
+    // Reference: https://medoo.in/api/select
+    $items = $database->select("tb_dish","*"); 
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Roboto:wght@400;500&display=swap"
+        rel="stylesheet">
+    <!--inter regular y extra bold-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="./css/main.css">
+
+</head>
+<body>
+
+<header>
+    <nav class="top-nav">
+
+        <a class="logo" href="./Homepage.html"><img src="./imgs/imgsMenu/Logo Kimchis 1imgs2.png" alt="Kimchis logo"><span>KIMCHIS</span> </a>
+
+        <ul class="nav-list">
+            <li><a class="nav-list-link" href="./Homepage.html">Homepage</a></li>
+            <li><a class="nav-list-link" href="#">Reservations</a></li>
+        </ul>
+
+        <ul class="nav-list-login-btn">
+            <li><a class="btn-login nav-list-link" href="#">Login</a></li>
+            <li><a class="btn-sign-up nav-list-link" href="#">Sign Up</a></li>
+        </ul>
+
+    </nav>
+</header>
+    <main>
+        <section class="landing-page">
+
+            <img class="img-container" src="./imgs/imgsMenu/ComidaInicio.jpg" alt="Menú"><span class="txt-container">김치</span>
+            <div class="rectangle">
+                <h1>MENU</h1>
+            </div>
+        </section>
+        
+        <section class="container-dishes">
+
+        <div class="category-container">
+            
+            <h3>
+                Appetizers
+            </h3>
+            <img src="imgs/imgsMenu/ImgEntradas.jpg" alt="Imagen encabezado" >
+
+        </div>
+
+        <!-- Dishes -->
+
+
+        <?php
+            foreach($items as $item){
+                echo "<section class='cards'>";
+                echo "<div class='card'>";
+                    echo "<h3 class='title'>".$item["dish_name"]."</h3>";
+                    echo "<p class='description'>".substr($item["dish_description"], 0, 70)."...</p>";
+                    echo "<div class='datos'>";
+                        echo "<span class='activity-price'>$".$item["destination_price"]."</span>";
+                        echo "<a><button class='button' type='button'><img src=".imgs/$item["dish_image"]."></button></a>"; 
+                    echo "</div>";
+                echo "</div>";
+                echo "<a class='btn read-btn' href='destination.php?id=".$item["id_destination"]."'>View Details</a>";
+                echo "</section>";
+            }
+        ?>
+
+
+        </section>
+<!-- 
+        <div class="cards">
+            <div class="card">
+                <h1 class="title">Kimchi</h1>
+                <p class="description">Spicy and fermented cabbage dish, 
+                    seasoned with a blend of red pepper flakes, garlic, 
+                    ginger, and other seasonings.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$6,00</span>
+                        <a href="./Dish.html"><button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button></a>
+                    </div>
+        </div>
+            <div class="card">
+                <h1 class="title">Gamjajeon</h1>
+                <p class="description">Crispy, pleasantly tasty and you can prepare 
+                    them with four ingredients: red potatoes.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$20</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Fried Mandu</h1>
+                <p class="description">baked empanadas, 
+                    crispy on the outside, but juicy on the 
+                    inside, meat with vegetables.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$35</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Steamed Mandu</h1>
+                <p class="description">Korean empanadas
+                    very juicy and cooked only with steamed water.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$25</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Meat Mandu</h1>
+                <p class="description">Mandu (empanada type)
+                    larger size steamed, 2 meat
+                    and 2 sweet beans.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$10</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Tokboki</h1>
+                <p class="description">Rice dough, flour
+                    of fish, egg and chives.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$11</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Dakkochi</h1>
+                <p class="description">Skewers
+                    grilled chicken never disappoint. Proof
+                    the spicy version, marinated in chili paste,
+                    or the sweet version, marinated in honey and brown sugar.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$10</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Pajeon</h1>
+                <p class="description">Pajeon is a variety of jeon, a pancake-like Korean dish made primarily of egg and flour.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$12</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Korean Macaroni Salad</h1>
+                <p class="description">Tender macaroni, some vegetables and a creamy and spicy sauce.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$10</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Korean lettuce salad</h1>
+                <p class="description">Lettuce, onion and toasted sesame seeds. With a garnish, which is 
+                    prepared with garlic, soy sauce, apple cider vinegar, sugar, 
+                    gochugaru and sesame seed oil.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$10</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+        </div>
+            <!--  -->
+        <div class="category-container">
+            
+            <h3>
+                Main Course
+            </h3>
+            <img src="imgs/imgsMenu/ImgPlatoFuerte.jpg" alt="Imagen encabezado" >
+
+        </div>
+        
+
+        <!-- <div class="cards">
+            <div class="card">
+                <h1 class="title">Korean barbecue</h1>
+                <p class="descripcion">Samgyepsal is grilled bacon seasoned with a little salt and pepper and grilled. 
+                    These are then wrapped in lettuce and accompanied with grilled accompanied with garlic, 
+                    onion and grilled kimchi.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$40</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Bibimbap</h1>
+                <p class="descripcion">Spicy and fermented cabbage dish, seasoned with a blend of red pepper 
+                    flakes, garlic, ginger, and other seasonings.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$55</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Kimbap</h1>
+                <p class="descripcion">Rice roll wrapped and filled with vegetables, 
+                    pickled radish, cooked egg and meat.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$24</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Bulgogi</h1>
+                <p class="descripcion">Marinated beef, grilled to perfection. With hints of soy sauce, 
+                    garlic, and sugar in the marinade.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$37</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Jajangmyeon</h1>
+                <p class="descripcion">Thick noodles characteristic for the dark color of their sauce, 
+                    made mainly with black beans.  </p>
+                
+                    <div class="datos">
+
+                        <span class="price">$20</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Japchae</h1>
+                <p class="descripcion">Deep fried cellophane noodles with a variety of vegetables and meat. 
+                    With soy sauce, sesame and sugar.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$30</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Samgyeopsal</h1>
+                <p class="descripcion">Grilled bacon seasoned with salt and pepper. Wrapped in 
+                    lettuce and served with garlic, onion and grilled kimchi.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$44</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Yangnyeom chicken</h1>
+                <p class="descripcion">Chicken bathed in sweet and sweet and spicy.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$44</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Samgyetang</h1>
+                <p class="descripcion">Ginseng chicken soup.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$44</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Sundubu jjigae</h1>
+                <p class="descripcion">Soft tofu broken into small pieces, impregnated with clam flavor, spicy and egg.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$44</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+        </div> -->
+        
+
+        <div class="category-container">
+            
+            <h3>
+                Desserts
+            </h3>
+            <img src="imgs/imgsMenu/ImgPostres.jpg" alt="Imagen encabezado" >
+
+        </div>
+
+        <!-- <div class="cards">
+            <div class="card">
+                <h1 class="title">Dasik</h1>
+                <p class="description">Its main ingredients are: cereal flour, honey, sugar, 
+                    fruit and yeot (made with rice or different types of cereals).</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$44</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Bingsu</h1>
+                <p class="description">It is a shaved ice, since its base is made of shaved 
+                    ice and it is wrapped in jams, syrups, fruits and toppings.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$44</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Pepero</h1>
+                <p class="description">It is a cookie stick with a dark chocolate 
+                    coating and can also be found in flavors such as white chocolate, 
+                    strawberry, almond, cocoa and cheese.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$44</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Mochis</h1>
+                <p class="description">They are made from rice flour with gluten, water,
+                    sugar and cornstarch. They can be filled with fruits such as strawberry, 
+                    kiwi, peach, blueberries, and decorated with chocolate or cream.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$44</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Dalgona Candy</h1>
+                <p class="description">This is one of the most popular Korean desserts after
+                    the success of The Squid Game. It is made with sugar and baking soda.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$44</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Fruit Sandwich</h1>
+                <p class="description">Bread, strawberries, banana, kiwi and tangerines.
+                    Filled with these fruits and cream (prepared with condensed milk and vanilla drops)</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$44</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Gyeongdan</h1>
+                <p class="description">It is made of rice stuffed with red beans and wrapped in many
+                    varieties of possibilities, such as sesame seeds, beans and 
+                    other varieties.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$44</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Yaksik</h1>
+                <p class="description">Glutinous rice. It is usually mixed with nuts and jujubes.
+                    and it is given a rectangular shape that is usually served in a bowl.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$44</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Yugwa</h1>
+                <p class="description">It is prepared with rice, honey, rice wine and water and
+                    fried to create. A crunchy dessert on the outside 
+                   but very soft on the inside. </p>
+                
+                    <div class="datos">
+
+                        <span class="price">$44</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Yeot</h1>
+                <p class="description">The texture of Yeot reminds us more of a candy than a sweet.
+                    Like many, it is also made with glutinous rice and sweet potato.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$44</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+        </div> -->
+
+        <div class="category-container">
+            
+            <h3>
+                Drinks
+            </h3>
+            <img src="imgs/imgsMenu/ImgBebidas.jpg" alt="Imagen encabezado" >
+
+        </div>
+
+        <!-- <div class="cards">
+            <div class="card">
+                <h1 class="title">Soju</h1>
+                <p class="description">It is the main alcoholic 
+                    beverage in the country, with alcohol levels of 12-20% per bottle a
+                    nd is a drink made from rice, wheat or potato extracts.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$10</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Makgeolli or Makkoli</h1>
+                <p class="description">It is a traditional alcoholic drink originally from Korea. 
+                    It is made from a mixture of wheat and rice with nuruk, which gives it a 
+                    milky-white color and a sweet flavor.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$10</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Mekchu</h1>
+                <p class="description">It is a type of beer in Korea, it can be drunk mixed with Soju</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$10</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Banana Milk</h1>
+                <p class="description">Sweetened banana milk.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$10</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Bokbunja ju</h1>
+                <p class="description">It is considered a fruit wine, made from cultivated wild blackberries. 
+                    This wine is made by fermenting blackberries with water. 
+                    Some varieties also contain rice and jicho grass.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$10</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+            <div class="card">
+                <h1 class="title">Milkis</h1>
+                <p class="description">Milk soft drink made with corn syrup, sugar, milk and carbonated water. 
+                    This drink can be found in a classic unflavored version or with fruit flavors 
+                    such as strawberry, banana, mango and apple.</p>
+                
+                    <div class="datos">
+
+                        <span class="price">$10</span>
+                        <button class="button" type="button"><img src="imgs/imgsMenu/BotonCarrito.png"> </button>
+                    </div>
+
+            </div>
+        </div> -->
+    
+        </section> -->
+
+        <!-- footer -->
+        <footer class="footer-container">
+            <div class="footer-content">
+                <section>
+                    <h3 class="footer-title">Discover the Essence of<br>Korean Cuisine</h3>
+                    <p class"footer-text">At Kimchis, we have an array of delightful dishes that 
+                        capture <br> the essence of Korean cuisine. 
+                        Our mission is to share the <br> richness of Korean 
+                        flavors and traditions.</p>
+                </section>
+                <div class="footer-links">
+                    <!--Get to Know Us-->
+                    <section>
+                        <h3>Get to Know Us</h3>
+                        <ul class="nav-footer-list">
+                            <li> <a class="nav-footer-link" href="#">About Us</a> </li>
+                            <li> <a class="nav-footer-link" href="#">Policies</a> </li>
+                            <li> <a class="nav-footer-link" href="#">Accessibility</a> </li>
+                            <li> <a class="nav-footer-link" href="#">Address</a> </li>
+                            <li> <a class="nav-footer-link" href="#">Reservations</a> </li>
+                        </ul>
+                    </section>
+
+
+                    <!--Let Us Help You-->
+                    <section>
+                        <h3>Let Us Help You</h3>
+                        <ul class="nav-footer-list">
+                            <li> <a class="nav-footer-link" href="#">Your Account</a> </li>
+                            <li> <a class="nav-footer-link" href="#">Complains</a> </li>
+                            <li> <a class="nav-footer-link" href="#">Contact Us</a> </li>
+                            <li> <a class="nav-footer-link" href="#">Help Center</a> </li>
+                            <li> <a class="nav-footer-link" href="#">Submit Feedback</a> </li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+            <section class="download-app">
+                <h3>Get the App</h3>
+                <div class="cta-app-container">
+                    <a href="#"><img src="./imgs/apple.png" alt="Our app from App Store"></a>
+                    <a href="#"><img src="./imgs/googleplay.png" alt="Our app from Google play"></a>
+                </div>
+            </section>
+            <p class="footer-legal" >&copy; 2023. All rights reserved.</p>
+        </footer>
+        <!--footer-->
+    </main>
+</body>
+</html>
