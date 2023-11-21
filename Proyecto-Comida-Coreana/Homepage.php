@@ -52,12 +52,14 @@
                 <ul class="nav-list">
                     <li><a class="nav-list-link" href="./Menu.php">Menu</a></li>
                     <li><a class="nav-list-link" href="./Menu.php">Reservations</a></li>
+                    <li><a class="nav-list-link" href="#">Login</a></li>
+                    <li><a class="nav-list-link" href="#">Sign Up</a></li>
                 </ul>
 
-                <ul class="nav-list-login-btn">
+                <!-- <ul class="nav-list-login-btn">
                     <li><a class="btn-login nav-list-link" href="#">Login</a></li>
                     <li><a class="btn-sign-up nav-list-link" href="#">Sign Up</a></li>
-                </ul>
+                </ul> -->
             </nav>
             
             <Section>

@@ -83,7 +83,7 @@
     font-family: var(--ff-main);
     color: black;
     position: relative;
-    bottom: 2rem; 
+    top: 1rem; 
 }
 
 .dish-title-php{
@@ -104,8 +104,8 @@
     max-width: 330px; 
     color: black;
     position: relative;
-    right: .5rem;
-    bottom: 3.5rem;
+    left: .5rem;
+    bottom: 0.5rem;
 }
 
 .dish-text-php{
@@ -136,7 +136,7 @@
     width: 17ch;
     position: relative;
     left: 9rem;
-    top: 15rem;
+    top: 22rem;
 }
 
 
@@ -156,6 +156,7 @@
 /* Style for the text of the individual dish in individual dish page */
 .text-individual-dish{
     max-width: 29rem;
+    max-height: 5rem;
     line-height: 2rem;
     font-size: 16px;
     color: black;
@@ -174,7 +175,7 @@
     color: black;
     position: relative;
     left: 6.9rem;  
-    bottom: 3rem;
+    bottom: 18rem;
 }
 
 /* KOREAN */
@@ -265,6 +266,7 @@
         position: relative;
         left: 29%;
         top: 2.5999999999999996rem;
+        
     }
 
     .features-text{

@@ -2,9 +2,14 @@
     require_once '../database.php';
     // Reference: https://medoo.in/api/select
     // tb_dishes and tb_categories JOIN
+    
+
+
+    
     $dish = $database->select("tb_dish", [
         "[>]tb_categories" => ["id_category" => "id_category"],
-        "[>]tb_number_of_people" => ["id_number_of_people" => "id_number_of_people"]
+        "[>]tb_number_of_people" => ["id_number_of_people" => "id_number_of_people"],
+        
     ], [
         "tb_dish.id_dish",
         "tb_dish.dish_name",
@@ -20,8 +25,39 @@
         "id_dish"=>$_GET["id"]
     ]);
 
+    // var_dump($dish);
+
     $url_params = "?id=".$dish[0]["id_dish"];
     // var_dump($dish);
+
+
+    $currentCategory = $dish[0]["id_category"];
+
+    $relatedDishes = $database->select("tb_dish", [
+        "[>]tb_categories" => ["id_category" => "id_category"],
+        "[>]tb_number_of_people" => ["id_number_of_people" => "id_number_of_people"],
+        
+    ], [
+        "tb_dish.id_dish",
+        "tb_dish.dish_name",
+        "tb_dish.dish_description",
+        "tb_dish.dish_image",
+        "tb_dish.dish_price",
+        "tb_dish.featured_dish",
+        "tb_categories.id_category",
+        "tb_categories.name_category",
+        "tb_number_of_people.id_number_of_people",
+        "tb_number_of_people.name_group_size"
+    ], [
+        "tb_dish.id_category" => $currentCategory,
+        "LIMIT" => 4,
+        "tb_dish.id_dish[!]" => $_GET["id"],
+    ]);
+
+    var_dump($currentCategory);
+    
+
+   
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +96,6 @@
 
             <div class="dish-container">
             <?php 
-                // echo "<div class='dish-container'>";
                         
                     echo "<h1 class='name-dish'>".$dish[0]["dish_name"]."</h1>";
                     echo "<div class='dish-container-space'>";
@@ -92,11 +127,32 @@
                     } else {
                         echo "...";
                     }
-                    echo "<h2>Main Course</h2>";
-                    echo "<h2>Featured</h2>";
+
+                    if($dish[0]["id_category"] == 1){
+                        echo "<h2>Main Course</h2>";
+                    }elseif($dish[0]["id_category"] == 2){
+                        echo "<h2>Appetizer</h2>";
+                    }elseif($dish[0]["id_category"] == 3){
+                        echo "<h2>Dessert</h2>";
+                    }elseif($dish[0]["id_category"] == 3){
+                        echo "<h2>Beverage</h2>";
+                    }
+
+                    if (!empty($dish) && is_array($dish) && isset($dish[0]["featured_dish"])) {
+                        if($dish[0]["featured_dish"] === 1){
+                            echo "<h2>Featured</h2>";
+                        }elseif($dish[0]["featured_dish"] === 2){
+                            echo "<h2>Not featured</h2>";
+                        }else{
+                            echo "<h2>Undefined</h2>";
+                        }
+                    }else{
+                        echo "<h2>Not Founded</h2>";
+                    }
+
                     echo "</div>";
 
-                echo "</div>";
+                echo "</div>"; //cambiar de posicion
             ?>
     
             </header>
@@ -104,66 +160,31 @@
             <!--RELATED DISHES-->
             <h2 class="related-dishes-title">Related dishes</h2>
 
-                <div class="green-circle"></div>
+            <div class="green-circle"></div>
+
 
             <div>
-                <section class="featured-dishes-container">
-                    <div class="dishes-container-related">
-                        <!--Haemulpajeon-->
-                        <section class="dish">
-                            <h3 class="dish-title">Haemulpajeon</h3>
-                            <div class="dish-thumb">
-                                <img class="dish-image" src="./imgs/imgsproyect/Haemulpajeonimgs.jpg" alt="">
-                                <span class="dish-price">$6</span>
-                            </div>
-                            <p class="dish-text">Seafood and vegetable<br>pancake, crispy on the outside<br>and tender inside. Served with<br>dipping sauce.</p>
-                            <div class="featured-dishes-buttons">
-                                <a class="btn-cart" href="#"></a>
-                                <a class="btn-info" href="#"></a>
-                            </div>
-                        </section>
+                <section class='featured-dishes-container'>
+                   <div class='dishes-container-related'>
 
-                        <!--Bulgogi-->
-                        <section class="dish">
-                            <h3 class="dish-title">Bulgogi</h3>
-                            <div class="dish-thumb">
-                                <img class="dish-image" src="./imgs/imgsproyect/Bulgogiimgs.jpg" alt="">
-                                <span class="dish-price">$12</span>
-                            </div>
-                            <p class="dish-text">Marinated beef, grilled to<br>perfection. With hints of soy<br>sauce, garlic, and sugar in the<br>marinade.</p>
-                            <div class="featured-dishes-buttons">
-                                <a class="btn-cart" href="#"></a>
-                                <a class="btn-info" href="#"></a>
-                            </div>
-                        </section>
 
-                        <!--Tteokbokki-->
-                        <section class="dish">
-                            <h3 class="dish-title">Tteokbokki</h3>
-                            <div class="dish-thumb">
-                                <img class="dish-image" src="./imgs/imgsproyect/Tteokbokki.png" alt="">
-                                <span class="dish-price">$8</span>
-                            </div>
-                            <p class="dish-text">Chewy rice cakes cooked in<br>gochujang sauce,<br>accompanied by fish cakes<br>and scallions.</p>
-                            <div class="featured-dishes-buttons">
-                                <a class="btn-cart read-btn" href="#"></a>
-                                <a class="btn-info read-btn" href="#"></a>
-                            </div>
-                        </section>
+                    <?php 
+                        foreach ($relatedDishes as $relatedDish) {
+                            echo "<section class='dish'>";
+                                echo "<h3 class='dish-title'>" . $relatedDish["dish_name"] . "</h3>";
+                                echo "<div class='dish-thumb'>";
+                                    echo "<img class='dish-image' src='./imgs/" . $relatedDish["dish_image"] . "' alt=''>";
+                                    echo "<span class='dish-price'>$" . $relatedDish["dish_price"] . "</span>";
+                                echo "</div>";
+                                echo "<p class='dish-text'>".substr($relatedDish["dish_description"], 0, 90)."</p>";                       
+                                echo "<div class='featured-dishes-buttons'>";
+                                    echo "<a class='btn-cart' href='#'></a>";
+                                    echo "<a class='btn-info' href='./Dish.php?id=".$relatedDish["id_dish"]."'></a>";
+                                echo "</div>";
+                            echo "</section>";
+                        }
+                    ?>
 
-                        <!--Kimbap-->
-                        <section class="dish">
-                            <h3 class="dish-title">Kimbap</h3>
-                            <div class="dish-thumb">
-                                <img class="dish-image" src="./imgs/imgsproyect/Kimbapimgs.jpg" alt="">
-                                <span class="dish-price">$15</span>
-                            </div>
-                            <p class="dish-text">Rice roll wrapped and filled<br>with vegetables, pickled<br>radish, cooked egg and meat.</p>
-                            <div class="featured-dishes-buttons">
-                                <a class="btn-cart read-btn" href="#"></a>
-                                <a class="btn-info read-btn" href="#"></a>
-                            </div>
-                        </section>
                     </div>
                 </section>
             </div>

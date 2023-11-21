@@ -88,7 +88,7 @@
     background-size: cover; 
     background-repeat: no-repeat;
     position: absolute;
-    top: 14%;
+    top: 72rem;
     left: 77%; 
     transform: translate(-50%, -50%); 
     border-radius: 50%; 
@@ -130,7 +130,7 @@
     display: grid;
     position: relative;
     
-    margin-bottom: 11rem;
+    margin-bottom: 40rem;
 }
 
 /* Cart and info buttons with background images and specific positioning. */
@@ -222,7 +222,7 @@
     border-radius: 0.4rem;
     left: 50%;
     transform: translate(-50% , 0);
-    top: 2.5rem;
+    top: 6.5rem;
     border: 1px solid #000;
 }
 
@@ -275,8 +275,8 @@
     box-shadow: 10px;
     border-radius: 1rem;
     position: relative;
-    left: 13rem;
-    bottom: 0rem;
+    left: 20rem;
+    top: 2rem;
 }
 
 /* styles for the logos from features in the individual dish */
@@ -286,14 +286,16 @@
     width: 50px;
     height: 50px;
     position: relative;
-    left: 8.9rem;
-    top: 2.5rem;
+    left: 18.9rem;
+    bottom: 4.5rem;
+    align-items: center; 
+    justify-content: center;
 }
 
 /* style for the arrow to come back to the homepage */
 .arrow-back{
     position: relative;
-    bottom: 46rem;
+    bottom: 39rem;
     left: 1rem;
 }
 
