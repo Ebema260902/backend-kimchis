@@ -178,6 +178,19 @@
     bottom: 18rem;
 }
 
+.empty-message{
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+    color: black;
+    max-width: 10rem;
+    position: relative;
+    text-align: center;
+    top: 12.5rem;
+    left: 6rem;
+
+}
+
 /* KOREAN */
 
 /* Style for the features text in Korean version in individual dish page */

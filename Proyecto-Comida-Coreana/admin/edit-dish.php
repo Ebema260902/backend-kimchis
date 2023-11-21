@@ -13,6 +13,7 @@
      $categories = $database->select("tb_categories","*");
      $number_of_people = $database->select("tb_number_of_people", "*");
      
+     
 
      $message = "";
 
@@ -20,6 +21,7 @@
         $dish = $database->select("tb_dish","*",[
             "id_dish" => $_GET["id"],
         ]);
+        // var_dump($dish);   
      }
 
      if($_POST){
@@ -36,7 +38,6 @@
             $file_tmp = $_FILES["dish_image"]["tmp_name"];
             $file_type = $_FILES["dish_image"]["type"];
             $file_ext_arr = explode(".", $_FILES["dish_image"]["name"]);
-
             $file_ext = end($file_ext_arr);
             $img_ext = ["jpeg", "png", "jpg", "webp"];
 
@@ -59,19 +60,21 @@
 
         $database->update("tb_dish",[
             
-            "id_category"=>$_POST["dish_category"], //revisar
+            "id_category"=>$_POST["dish_category"], 
             "dish_name"=>$_POST["dish_name"],
-            // "dish_name_co"=>$_POST["dish_name_co"],
+            "dish_name_ko"=>$_POST["dish_name_ko"],
+            "featured_dish"=>$_POST["featured_dish"],
             "id_number_of_people"=>$_POST["dish_people"],
             "dish_description"=>$_POST["dish_description"],
-            // "dish_description_co"=>$_POST["dish_description_co"],
+            "dish_description_ko"=>$_POST["dish_description_ko"],
             "dish_image"=> $img,
             "dish_price"=>$_POST["dish_price"]
         ],[
             "id_dish" => $_POST["id"]
         ]);
-
-        header("plate: list-dishes.php");
+        
+        header("location: list-dishes.php");
+        
         
      }
 ?>
@@ -95,8 +98,8 @@
                 <input id="dish_name" class="textfield" name="dish_name" type="text" value="<?php echo $dish[0]["dish_name"] ?>">
             </div>
             <div class="form-items">
-                <label for="dish_name">Dish Name CO</label>
-                <!-- <input id="dish_name" class="textfield" name="dish_name_co" type="text" value="<?php //echo $dish[0]["dish_name_co"] ?>"> -->
+                <label for="dish_name_ko">Dish Name KO</label>
+                <input id="dish_name_ko" class="textfield" name="dish_name_ko" type="text" value="<?php echo $dish[0]["dish_name_ko"] ?>">
             </div>
             <div class="form-items">
                 <label for="dish_category">Dish Category</label>
@@ -118,10 +121,10 @@
                 <select name="dish_people" id="dish_people">
                 <?php 
                         foreach($number_of_people as $group_size){
-                            if($dish[0]["id_number_of_people"] == $number_of_people["id_number_of_people"]){
-                                echo "<option value='".$number_of_people["id_number_of_people"]."' selected>".$number_of_people["name_group_size"]."</option>";
+                            if($dish[0]["id_number_of_people"] == $group_size["id_number_of_people"]){
+                                echo "<option value='".$group_size["id_number_of_people"]."' selected>".$group_size["name_group_size"]."</option>";
                             }else{
-                                echo "<option value='".$number_of_people["id_number_of_people"]."'>".$number_of_people["name_group_size"]."</option>";
+                                echo "<option value='".$group_size["id_number_of_people"]."'>".$group_size["name_group_size"]."</option>";
                             }
                         }
                     ?>
@@ -129,17 +132,24 @@
             </div>
 
             
+            <div class="form-items">
+                <label for="featured_dish">Featured Dish</label>
+                <select name="featured_dish" id="featured_dish">
+                    <option value="1" <?php echo ($dish[0]["featured_dish"] == 1) ? 'selected' : ''; ?>>Yes</option>
+                    <option value="0" <?php echo ($dish[0]["featured_dish"] == 0) ? 'selected' : ''; ?>>No</option>
+                </select>
+            </div>
 
+            
             <div class="form-items">
                 <label for="dish_description">Dish Description</label>
                 <textarea id="dish_description" name="dish_description" id="" cols="30" rows="10"><?php echo $dish[0]["dish_description"]; ?></textarea>
             </div>
             <div class="form-items">
-                <label for="dish_description">Dish Description Co</label>
-                <textarea id="dish_description" name="dish_description_co" id="" cols="30" rows="10"><?php echo $dish[0]["dish_description_co"]; ?></textarea>
+                <label for="dish_description_ko">Dish Description KO</label>
+                <textarea id="dish_description_ko" name="dish_description_ko" id="" cols="30" rows="10"><?php echo $dish[0]["dish_description_ko"]; ?></textarea>
             </div>
 
-            
             
             <div class="form-items">
                 <label for="dish_image">Dish Image</label>

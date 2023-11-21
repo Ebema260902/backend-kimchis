@@ -54,7 +54,7 @@
         "tb_dish.id_dish[!]" => $_GET["id"],
     ]);
 
-    var_dump($currentCategory);
+    // var_dump($currentCategory);
     
 
    
@@ -134,7 +134,7 @@
                         echo "<h2>Appetizer</h2>";
                     }elseif($dish[0]["id_category"] == 3){
                         echo "<h2>Dessert</h2>";
-                    }elseif($dish[0]["id_category"] == 3){
+                    }elseif($dish[0]["id_category"] == 4){
                         echo "<h2>Beverage</h2>";
                     }
 
@@ -152,7 +152,7 @@
 
                     echo "</div>";
 
-                echo "</div>"; //cambiar de posicion
+                echo "</div>"; 
             ?>
     
             </header>
@@ -164,28 +164,43 @@
 
 
             <div>
-                <section class='featured-dishes-container'>
-                   <div class='dishes-container-related'>
+                <div>
+    <section class='featured-dishes-container'>
+        <div class='dishes-container-related'>
 
+        <?php 
+            // Verify if there are at least 4 elements in $relatedDishes
+            $relatedDishesCount = count($relatedDishes);
+            $numberContainers = 4;
 
-                    <?php 
-                        foreach ($relatedDishes as $relatedDish) {
-                            echo "<section class='dish'>";
-                                echo "<h3 class='dish-title'>" . $relatedDish["dish_name"] . "</h3>";
-                                echo "<div class='dish-thumb'>";
-                                    echo "<img class='dish-image' src='./imgs/" . $relatedDish["dish_image"] . "' alt=''>";
-                                    echo "<span class='dish-price'>$" . $relatedDish["dish_price"] . "</span>";
-                                echo "</div>";
-                                echo "<p class='dish-text'>".substr($relatedDish["dish_description"], 0, 90)."</p>";                       
-                                echo "<div class='featured-dishes-buttons'>";
-                                    echo "<a class='btn-cart' href='#'></a>";
-                                    echo "<a class='btn-info' href='./Dish.php?id=".$relatedDish["id_dish"]."'></a>";
-                                echo "</div>";
-                            echo "</section>";
-                        }
-                    ?>
+            for ($i = 0; $i < $numberContainers; $i++) {
+             
+                if ($i < $relatedDishesCount) {
+                    $relatedDish = $relatedDishes[$i];
+                    echo "<section class='dish'>";
+                        echo "<h3 class='dish-title'>" . $relatedDish["dish_name"] . "</h3>";
+                        echo "<div class='dish-thumb'>";
+                            echo "<img class='dish-image' src='./imgs/" . $relatedDish["dish_image"] . "' alt=''>";
+                            echo "<span class='dish-price'>$" . $relatedDish["dish_price"] . "</span>";
+                        echo "</div>";
+                        echo "<p class='dish-text'>" . substr($relatedDish["dish_description"], 0, 90) . "</p>";                       
+                        echo "<div class='featured-dishes-buttons'>";
+                            echo "<a class='btn-cart' href='#'></a>";
+                            echo "<a class='btn-info' href='./Dish.php?id=".$relatedDish["id_dish"]."'></a>";
+                        echo "</div>";
+                    echo "</section>";
+                } else {
+                    echo "<section class='dish empty-dish'>";
+                        echo "<p class='empty-message'>Oops! There are no dishes here at the moment.</p>";
+                    echo "</section>";
+                }
+            }
+        ?>
 
-                    </div>
+        </div>
+    </section>
+</div>
+
                 </section>
             </div>
 
