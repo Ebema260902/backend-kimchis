@@ -247,7 +247,7 @@
 }
 
 
-/* DISH HTML */
+/* DISH */
 
 /* Image space in the dish page */
 .dish-image-space{
@@ -292,6 +292,18 @@
     justify-content: center;
 }
 
+.individual-dish-logos-specifications{
+    display: flex;
+    gap: 8.5rem;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    left: 18.9rem;
+    top: 4.5rem;
+    align-items: center; 
+    justify-content: center;
+}
+
 /* style for the arrow to come back to the homepage */
 .arrow-back{
     position: relative;
@@ -304,6 +316,42 @@
 .checkbox-container{
     position: relative;
     left: 70%;
+}
+
+.lang-btn {
+    width: 3rem;
+    height: 3rem;
+    border: black solid;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    line-height: 3rem;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    text-transform: uppercase;
+    position: absolute;
+    top: 5%; /* Ajusta según sea necesario */
+    right: 3%; /* Ajusta según sea necesario */
+}
+
+.order-now{
+    background: #646B49;
+    color: white;
+    font-family: 'Inter', sans-serif, white;
+    font-size: var(--fs-md);
+    width: 7rem;
+    height: 2rem;
+    padding: .5rem 2rem;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none; 
+    position: relative;
+    left: 9rem;
+    top: 2rem;
 }
 
 /* defines color for "english" text */
@@ -456,7 +504,9 @@
     font-weight:bold;
     position: relative;
     top: 9rem;
-    left: 33%;
+    /* left: 26%; */
+    text-align: center;
+    
 }
 
 .container-text{
@@ -495,7 +545,7 @@
     font-weight:500;
     position: relative;
     top: 8.5rem;
-    left: 40%;
+    left: 45%;
 }
 
 .description-dish{
@@ -504,7 +554,8 @@
     text-align: center;
     position: relative;
     top: 8rem;
-    right: 1rem;
+    left: 6rem;
+    max-width: 33rem;
 }
 
 /* COLUMN 2 */
@@ -513,7 +564,7 @@
     overflow-x: hidden;
     overflow: hidden;
     width:35rem;
-    height: 85rem;
+    height: 30rem;
     position: relative;
     background-color: white;
     border-radius: 1rem;
@@ -531,9 +582,18 @@
     font-weight:bold;
     position: relative;
     left: 10.5rem;
-   
     z-index: 2;
 }
+
+.text-your-dish{
+    font-size:2rem;
+    font-family: 'Inter', sans-serif;
+    font-weight:bold;
+    position: relative;
+    left: 12.3rem;
+    z-index: 2;
+}
+
 .text-subtitles{
     font-size: 1.5rem;
     font-family: 'Inter', sans-serif;
@@ -542,7 +602,7 @@
     z-index: 2;
 }
 
-.sauce-items{
+.order-items-specifications{
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -557,14 +617,14 @@
 
 
 
-.label-suace{
+.label-amount{
     font-size: 1rem;
     font-family: 'Inter', sans-serif;
     font-weight: lighter;
     margin: 0;
 }
 
-.input-sauce{
+.input-amount{
     width: 8rem;
     border-radius: 1rem;
     position: relative;
@@ -598,6 +658,59 @@
     text-decoration: none;
     position: relative;
     bottom: 2rem;
+}
+
+.btn-confirm-2{
+    color: var(--clr-white);
+    text-decoration: none;
+    font-size: var(--fs-md);
+    max-width: 8rem;
+    display: flex;
+    align-items: center;
+    padding: .5rem 2rem;
+    background: #646B49;
+    border-radius: .4rem;
+    text-decoration: none;
+    position: relative;
+    top: 2rem;
+    
+}
+
+.btn-add-dishes{
+    color: var(--clr-white);
+    text-decoration: none;
+    font-size: var(--fs-md);
+    max-width: 8rem;
+    display: flex;
+    align-items: center;
+    padding: .5rem 2rem;
+    background: #646B49;
+    border-radius: .4rem;
+    text-decoration: none;
+    position: relative;
+    top: 2rem;
+    
+}
+
+.container-illustrative{
+    overflow: hidden;
+    width:35rem;
+    height: 23rem;
+    position: relative;
+    background-color: white;
+    border-radius: 1rem;
+    left: 62rem;
+    bottom: 45rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.10);
+    object-fit: cover;
+}
+
+.containier-items-confirmation{
+    display: flex;
+    gap: 6rem;
+    text-align: center;
+    position: relative;
+    left: 7.3rem;
 }
 
 
@@ -733,7 +846,11 @@
         position: relative;
     
         left: 5rem;
-      }
+    }
+
+    
+
+    
     
       /* COLUMN 1 */
                 .main-container-dish{
@@ -903,7 +1020,7 @@
                                 z-index: 2;
                             }
 
-                            .sauce-items{
+                            .order-items-specifications{
                                 display: grid;
                                 grid-auto-flow: column;
                                 grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -918,14 +1035,14 @@
 
 
 
-                            .label-suace{
+                            .label-amount{
                                 font-size: 1rem;
                                 font-family: 'Inter', sans-serif;
                                 font-weight: lighter;
                                 margin: 0;
                             }
 
-                            .input-sauce{
+                            .input-amount{
                                 width: 8rem;
                                 border-radius: 1rem;
                                 position: relative;

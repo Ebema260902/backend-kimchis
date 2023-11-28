@@ -66,6 +66,14 @@
     margin-bottom: 5rem;
 }
 
+.btn-container-confirm{
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5rem;
+}
+
 /* Styles for a container with app-related elements */
 .cta-app-container{
     display: flex;

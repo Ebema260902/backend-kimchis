@@ -1,76 +1,41 @@
 <?php 
     require_once '../database.php';
-   
-    $lang = "KO";
-    $url_params = "";
-
-    if($_GET){
-        if(isset($_GET["lang"]) && $_GET["lang"] == "ko"){
-            $dish = $database->select("tb_dish", [
-                "[>]tb_categories" => ["id_category" => "id_category"],
-                "[>]tb_number_of_people" => ["id_number_of_people" => "id_number_of_people"]
-                
-            ], [
-                "tb_dish.id_dish",
-                "tb_dish.dish_name_ko",
-                "tb_dish.dish_description_ko",
-                // "tb_dish.dish_name",
-                // "tb_dish.dish_description",
-                "tb_dish.dish_image",
-                "tb_dish.dish_price",
-                "tb_dish.featured_dish",
-                "tb_categories.id_category",
-                "tb_categories.name_category",
-                "tb_number_of_people.id_number_of_people",
-                "tb_number_of_people.name_group_size"
-            ], [
-                "id_dish"=>$_GET["id"]
-            ]);
-
-            //references
-            $dish[0]["dish_name"] = $dish[0]["dish_name_ko"];
-            $dish[0]["dish_description"] =  $dish[0]["dish_description_ko"];
-
-            $lang = "EN";
-            $url_params = "?id=".$dish[0]["id_dish"];
+    // Reference: https://medoo.in/api/select
+    // tb_dishes and tb_categories JOIN
+    
 
 
-            
-
-        }else{
-            $dish = $database->select("tb_dish", [
-                "[>]tb_categories" => ["id_category" => "id_category"],
-                "[>]tb_number_of_people" => ["id_number_of_people" => "id_number_of_people"]
-                
-            ], [
-                "tb_dish.id_dish",
-                "tb_dish.dish_name",
-                "tb_dish.dish_name_ko",
-                "tb_dish.dish_description",
-                "tb_dish.dish_description_ko",
-                "tb_dish.dish_image",
-                "tb_dish.dish_price",
-                "tb_dish.featured_dish",
-                "tb_categories.id_category",
-                "tb_categories.name_category",
-                "tb_number_of_people.id_number_of_people",
-                "tb_number_of_people.name_group_size"
-            ], [
-                "id_dish"=>$_GET["id"]
-            ]);
+    
+    $dish = $database->select("tb_dish", [
+        "[>]tb_categories" => ["id_category" => "id_category"],
+        "[>]tb_number_of_people" => ["id_number_of_people" => "id_number_of_people"],
         
+    ], [
+        "tb_dish.id_dish",
+        "tb_dish.dish_name",
+        "tb_dish.dish_description",
+        "tb_dish.dish_image",
+        "tb_dish.dish_price",
+        "tb_dish.featured_dish",
+        "tb_categories.id_category",
+        "tb_categories.name_category",
+        "tb_number_of_people.id_number_of_people",
+        "tb_number_of_people.name_group_size"
+    ], [
+        "id_dish"=>$_GET["id"]
+    ]);
+
+    // var_dump($dish);
+
+    $url_params = "?id=".$dish[0]["id_dish"];
+    // var_dump($dish);
 
 
-            $lang = "KO";
-            $url_params = "?id=".$dish[0]["id_dish"]."&lang=ko";
-        }
-    }
-
-    // RELATED DISHES
     $currentCategory = $dish[0]["id_category"];
+
     $relatedDishes = $database->select("tb_dish", [
         "[>]tb_categories" => ["id_category" => "id_category"],
-        "[>]tb_number_of_people" => ["id_number_of_people" => "id_number_of_people"]
+        "[>]tb_number_of_people" => ["id_number_of_people" => "id_number_of_people"],
         
     ], [
         "tb_dish.id_dish",
@@ -131,8 +96,7 @@
 
             <div class="dish-container">
             <?php 
-            
-                    echo "<a class = 'lang-btn' href='dish.php". $url_params."'>".$lang."</a>";   
+                        
                     echo "<h1 class='name-dish'>".$dish[0]["dish_name"]."</h1>";
                     echo "<div class='dish-container-space'>";
                         echo "<img class='dish-image-space' src='./imgs/".$dish[0]["dish_image"]."' alt='".$dish[0]["dish_name"]."'>";
@@ -185,9 +149,6 @@
                     }else{
                         echo "<h2>Not Founded</h2>";
                     }
-
-                    echo "<a class='order-now' href='./specifications.php?id=".$dish[0]["id_dish"]."'>ORDER NOW</a>";
-                    
 
                     echo "</div>";
 

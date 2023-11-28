@@ -178,6 +178,18 @@
     bottom: 18rem;
 }
 
+.features-text-specifications{
+    display: flex;
+    gap:5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    color: black;
+    position: relative;
+    left: 5.9rem;  
+    top: 3rem;
+}
+
 .empty-message{
     font-family: 'Inter', sans-serif;
     font-size: 20px;
@@ -188,6 +200,29 @@
     text-align: center;
     top: 12.5rem;
     left: 6rem;
+}
+
+.thanks-title{
+    color: black;
+    font-size: 2rem;
+    font-family: var(--ff-main);
+    position: relative;
+    position: relative;
+    text-align: center;
+    bottom: 6rem;
+    z-index: 1;
+}
+
+.text-last-order{
+    max-width: 8rem;
+}
+
+
+/* CART */
+.title-cart{
+    color: black;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
 
 }
 

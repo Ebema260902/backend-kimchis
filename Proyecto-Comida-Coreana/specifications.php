@@ -1,3 +1,43 @@
+<!-- Implementación de extras en specifications -->
+<?php
+    require_once '../database.php';
+
+    $amount = 1;
+
+    
+
+
+    if($_GET){
+       
+        // Reference: https://medoo.in/api/select
+        $dish = $database->select("tb_dish",[
+            "[>]tb_categories"=>["id_category" => "id_category"],
+            "[>]tb_number_of_people"=>["id_number_of_people" => "id_number_of_people"]
+        ],[
+            "tb_dish.id_dish",
+            "tb_dish.dish_name",
+            "tb_dish.dish_description",
+            "tb_dish.dish_image",
+            "tb_dish.dish_price",
+            "tb_dish.featured_dish",
+            "tb_categories.id_category",
+            "tb_categories.name_category",
+            "tb_number_of_people.id_number_of_people",
+            "tb_number_of_people.name_group_size"
+        ],[
+            "id_dish"=>$_GET["id"]
+        ]);
+
+        $dishPrice = $dish[0]["dish_price"];
+
+        $dishName = $dish[0]['dish_name'];
+        
+
+        // Reference: https://medoo.in/api/select
+    
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,41 +56,9 @@
 <body>
     <div class="main-container">
 
-        <!--HEADER -->
-        <header class="hero-container">
-            <nav class="top-nav">
-                <div>
-                    <a class="logo-image" href="#"><img src="./imgs/imgsproyect/Logo Kimchis 1imgs2.png" alt="Kimchis logo"></a>
-                </div>
-                
-                    <a class="name-kimchis" href="./Homepage.html">KIMCHIS</a>
-                
-                <ul class="nav-list">
-                    <li><a class="nav-list-link-specifications" href="./Menu.html">Menu</a></li>
-                    <li><a class="nav-list-link-specifications" href="./Menu.html">Reservations</a></li>
-                </ul>
-
-                <ul class="nav-list-login-btn">
-                    <li><a class="btn-login nav-list-link" href="#">Login</a></li>
-                    <li><a class="btn-sign-up nav-list-link" href="#">Sign Up</a></li>
-                </ul>
-            </nav>
-            
-            <Section class="main-container-dish">
-                <h1 class="hero-title-specifications">Experience <br> Korean <br> Cuisine</h1>
-                <div>
-                    <p class="hero-text-specifications">Indulge in the vibrant and flavorful world of Korean gastronomy, where each dish is a masterpiece.</p>
-                </div>
-
-                <div class="btn-container">
-                    <a class="btn-get-started" href="#">GET STARTED</a>
-                </div>
-                <div>
-                    <img class="image-header-in-specifications" src="./imgs/imgsproyect/image-main33.jpg" alt="Image-Header">
-                </div>
-            </Section>
-        </header>
-        <!--HEADER -->
+        <?php 
+            // include "./parts/header-homepage.php";
+        ?>
 
 
         
@@ -59,26 +67,69 @@
             <!-- INFORMATAION CONTAINER -->
             <div class="container-wrapper">
                 <div class="container-dish-elements">
-                    <div class="container-image-element">
-                        <!-- <img class="image-element" src="../Proyecto-Comida-Coreana/imgs/imgsproyect/Kimbapimgs.jpg" alt="Dish"> -->
-                    </div>
-                    <div class="container-logos">
-                        <img class="logo-element-family" src="../Proyecto-Comida-Coreana/imgs/imgsproyect/familiar-logo.png" alt="Familiar">
-                        <img class="logo-element-main" src="../Proyecto-Comida-Coreana/imgs/imgsproyect/tray-logo.png" alt="Main Course">
-                        <img class="logo-element" src="../Proyecto-Comida-Coreana/imgs/imgsproyect/heart-logo.png" alt="Heart">
-                    </div>
 
-                    <div class="container-text">
-                        <span class="text-feature">Familiar</span>
-                        <span class="text-feature-main">Main Course</span>
-                        <span class="text-feature-featured">Featured</span>
-                    </div>
+                <?php 
+                    echo "<div >";
+                        echo "<img class='dish-image-space' src='./imgs/".$dish[0]["dish_image"]."' alt='".$dish[0]["dish_name"]."'>";
+                    echo "</div>";
+                    echo "<div class='individual-dish-logos-specifications'>";
+                    if ($dish[0]["id_number_of_people"] == 1) {
+                        echo "<img src='./imgs/imgsproyect/familiar-logo.png' alt='familiar-logo'>";
+                    } elseif ($dish[0]["id_number_of_people"] == 2) {
+                        echo "<img src='./imgs/imgsproyect/individual-logo.png' alt='individual-logo'>";
+                    } elseif ($dish[0]["id_number_of_people"]== 3) {
+                        echo "<img src='./imgs/imgsproyect/couple-logo.png' alt='couple-logo'>";
+                    } else {
+                        echo "Tipo de imágen desconocido";
+                    }
+                        echo "<img src='./imgs/imgsproyect/tray-logo.png' alt='dish-space'>";
+                        echo "<img src='./imgs/imgsproyect/heart-logo.png' alt='dish-space'>";
+                        echo "</div>";
+                        echo "<a href='./Homepage.php''><img class='arrow-back' src='./imgs/imgsproyect/arrowback.png' alt='arrowback'></a>";
+                    echo "<div  class='features-text-specifications'>";
+                    if ($dish[0]["id_number_of_people"] == 1) {
+                        echo "<h2>Familiar</h2>";
+                    } elseif ($dish[0]["id_number_of_people"] == 2) {
+                        echo "<h2>Individual</h2>";
+                    } elseif ($dish[0]["id_number_of_people"]== 3) {
+                        echo "<h2>Couple</h2>";
+                    } else {
+                        echo "...";
+                    }
 
-                    <h1 class="element-dish-name">Samgyeopsal</h1>
-                    <h2 class="element-price">$32,00</h2>
-                    <p class="description-dish">Samgyepsal is grilled bacon seasoned with <br> a little salt and pepper and grilled.These<br>
-                    are then wrapped in lettuce and <br> accompanied with grilled accompanied with <br> garlic, onion and grilled kimchi.</p>
-                </div>
+                    if($dish[0]["id_category"] == 1){
+                        echo "<h2>Main Course</h2>";
+                    }elseif($dish[0]["id_category"] == 2){
+                        echo "<h2>Appetizer</h2>";
+                    }elseif($dish[0]["id_category"] == 3){
+                        echo "<h2>Dessert</h2>";
+                    }elseif($dish[0]["id_category"] == 4){
+                        echo "<h2>Beverage</h2>";
+                    }
+
+                    if (!empty($dish) && is_array($dish) && isset($dish[0]["featured_dish"])) {
+                        if($dish[0]["featured_dish"] === 1){
+                            echo "<h2>Featured</h2>";
+                        }elseif($dish[0]["featured_dish"] === 2){
+                            echo "<h2>Not featured</h2>";
+                        }else{
+                            echo "<h2>Undefined</h2>";
+                        }
+                    }else{
+                        echo "<h2>Not Founded</h2>";
+                    }
+
+                    echo "<a class='order-now' href='./specifications.php?id=".$dish[0]["id_dish"]."'>ORDER NOW</a>";
+
+                    echo "</div>";
+
+                    echo "<h1 class='element-dish-name'>".$dish[0]["dish_name"]."</h1>";
+                    echo "<h2 class='element-price'>$".$dish[0]["dish_price"]."</h2>";
+                    echo "<p class='description-dish'>".$dish[0]["dish_description"]."</p>";
+                echo "</div>";
+
+                ?>
+            
 
 
                 <!-- SEPECIFICATIONS -->
@@ -87,148 +138,109 @@
                      <div>
                          <h1 class="text-specifications">Specifications</h1>
                     </div>
-                    <!-- Extra sauce -->
-                    <section >
-                        <div>
-                            <h2 class="text-subtitles">Extra sauce</h2>
-                        </div>
 
-                        <div class="sauce-items">
-                            <div>
-                                <label class="label-suace" for="sauce">Gochujang (+$1,00)</label>
-                            </div>
-                            <div>
-                                <input class="input-sauce" name="sauce" type="0" >
-                            </div>
-                        </div>
+                    <?php 
+                        echo "<section>";
 
-                        <div class="sauce-items">
-                            <div>
-                                <label class="label-suace" for="sauce">Ssamjang (+$1,00)</label>
-                            </div>
-                            <div>
-                                <input class="input-sauce" name="sauce" type="0" >
-                            </div>
-                        </div>
+                            echo "<div class='order-items-specifications'>";
+                                echo "<div>";
+                                    echo "<label class='label-amount' step='1' for='order'>Amount</label>";
+                                echo "</div>";
+                                echo "<div>";
+                                    echo "<input class='input-amount' name='order' type='number' oninput='updateSubtotal(this)' step='1' value='0' min='0' max='50'>";
+                                echo "</div>";
+                                echo "<div>";
+                                    echo "<p type='number' id='amount-subtotal' value='0' min='0' max='50'>$0</p>";  
+                                echo "</div>";
+                            echo "</div>";
+
+
+                            echo "<div class='order-items-specifications'>";
+                                echo "<div>";
+                                    echo "<label class='label-suace' step='1' for='sauce'>Date:</label>";
+                                echo "</div>";
+                                echo "<div>";
+                                echo "<label class='label-suace' step='1' for='sauce'>27/11/2013</label>";
+                                echo "</div>";
+                            echo "</div>";
+
+                        echo "</section>";
+
+                        // LINE DIV
+                        echo "<div>";
+                            echo "<img class='line-div' src='../Proyecto-Comida-Coreana/imgs/imgsproyect/line-div.png' alt=''>";
+                        echo "</div>";
+
+
+                        echo "<section>";
+                            echo "<div>";
+                                echo "<h1 class='text-subtitles'>Total:</h2>";
+                                echo "<h2 id='confirmation-total-price' class='total-price'>0$</h2>";
+                            echo "</div>";
+                        echo "</section>";
                         
-                        <div class="sauce-items">
-                            <div>
-                                <label class="label-suace" for="sauce">Doenjang (+$1,00)</label>
-                            </div>
-                            <div>
-                                <input class="input-sauce" name="sauce" type="0" >
-                            </div>
-                        </div>
-
-                        <div class="sauce-items">
-                            <div>
-                                <label class="label-suace" for="sauce">Yangnyeom (+$1,00)</label>
-                            </div>
-                            <div>
-                                <input class="input-sauce" name="sauce" type="0" >
-                            </div>
-                        </div>
-
-                        <div class="sauce-items">
-                            <div>
-                                <label class="label-suace" for="sauce">Chogochujang (+$1,00)</label>
-                            </div>
-                            <div>
-                                <input class="input-sauce" name="sauce" type="0" >
-                            </div>
-                        </div>
-
-                    </section>
-
-                    <!-- LINE DIV -->
-                    <div>
-                           <img class="line-div" src="../Proyecto-Comida-Coreana/imgs/imgsproyect/line-div.png" alt="">
-                    </div>
-
-
-                    <!-- Additional -->
-                    <section >
-                        <div>
-                            <h2 class="text-subtitles">Additional</h2>
-                        </div>
-
-                        <div class="sauce-items">
-                            <div>
-                                <label class="label-suace" for="sauce">Dwenjang (+$5,00)</label>
-                            </div>
-                            <div>
-                                <input class="input-sauce" name="sauce" type="0" >
-                            </div>
-                        </div>
-
-                        <div class="sauce-items">
-                            <div>
-                                <label class="label-suace" for="sauce">Doenjang (+$5,00)</label>
-                            </div>
-                            <div>
-                                <input class="input-sauce" name="sauce" type="0" >
-                            </div>
-                        </div>
-                        
-                        <div class="sauce-items">
-                            <div>
-                                <label class="label-suace" for="sauce">Gochujang (+$6,00)</label>
-                            </div>
-                            <div>
-                                <input class="input-sauce" name="sauce" type="0" >
-                            </div>
-                        </div>
-
-                        <div class="sauce-items">
-                            <div>
-                                <label class="label-suace" for="sauce">Gim (+$3,00)</label>
-                            </div>
-                            <div>
-                                <input class="input-sauce" name="sauce" type="0" >
-                            </div>
-                        </div>
-
-                        <div class="sauce-items">
-                            <div>
-                                <label class="label-suace" for="sauce">Garaetteok (+$6,00)</label>
-                            </div>
-                            <div>
-                                <input class="input-sauce" name="sauce" type="0" >
-                            </div>
-                        </div>
-
-                        <div class="sauce-items">
-                            <div>
-                                <label class="label-suace" for="sauce">Jujube (+$2,00)</label>
-                            </div>
-                            <div>
-                                <input class="input-sauce" name="sauce" type="0" >
-                            </div>
-                        </div>
-
-                    </section>
-
-                    <!-- LINE DIV -->
-                    <div>
-                           <img class="line-div" src="../Proyecto-Comida-Coreana/imgs/imgsproyect/line-div.png" alt="">
-                    </div>
-
-
-                    <section >
-                        <div>
-                            <h1 class="text-subtitles">Total:</h2>
-                            <h2 class="total-price" >0$</h2>
-                        </div>
-                    </section>
+                    ?>
 
 
                     <div class="btn-container">
-                        <a class="btn-add-to-cart" href="#">Add to cart</a>
+                        <a class="btn-add-to-cart" href="#">Next</a>
                     </div>
 
                 </div>
 
             </div>
+
+
+            
+            <div class="container-illustrative">
+                <!-- <img src='./imgs/imgsproyect/illustrative-food.jpg' alt='illustrative-food'> -->
+                <div>
+                    <h1 class="text-your-dish">Your dish</h1>
+                </div>
+                
+
+                <?php 
+                // LINE DIV
+                echo "<div>";
+                    echo "<img class='line-div' src='../Proyecto-Comida-Coreana/imgs/imgsproyect/line-div.png' alt=''>";
+                echo "</div>";
+
+                    echo "<section class='containier-items-confirmation'>";
+                        echo "<p>Dish</p>";
+                        echo "<p>Amount</p>";
+                        echo "<p>Total price</p>";
+                    echo "</section>";
+                    
+
+                // LINE DIV
+                echo "<div>";
+                    echo "<img class='line-div' src='../Proyecto-Comida-Coreana/imgs/imgsproyect/line-div.png' alt=''>";
+                echo "</div>";
+
+                    echo "<section class='containier-items-confirmation'>";
+                        echo "<p class='text-last-order'>".$dish[0]['dish_name']."</p>";
+                        echo "<p id='confirmation-amount'>0</p>";
+                        echo "<p id='confirmation-total-price-last'>0$</p>";
+                    echo "</section>";
+
+
+                    echo "<div class='btn-container-confirm'>";
+                        echo "<a class='btn-confirm-2' href='./cart.php?id=".$dish[0]["id_dish"]."'>Confirm</a>";
+                        echo "<a class='btn-add-dishes' href='#'>Add more dishes</a>";
+                    echo "</div>";
+                
+                ?>
+
+
+                <!-- <div class="btn-container-confirm">
+                    <a class="btn-confirm-2" href="#">Confirm</a>
+                    
+                    <a class="btn-add-dishes" href="#">Add more dishes</a>
+                </div> -->
+
+            </div>
+
+            
 
 
             <div class="bowl-container">
@@ -238,54 +250,32 @@
          
 
             <!-- footer -->
-            <footer class="footer-container">
-                <div class="footer-content">
-                    <section>
-                        <h3 class="footer-title">Discover the Essence of<br>Korean Cuisine</h3>
-                        <p class"footer-text">At Kimchis, we have an array of delightful dishes that 
-                            capture <br> the essence of Korean cuisine. 
-                            Our mission is to share the <br> richness of Korean 
-                            flavors and traditions.</p>
-                    </section>
-                    <div class="footer-links">
-                        <!--Get to Know Us-->
-                        <section>
-                            <h3>Get to Know Us</h3>
-                            <ul class="nav-footer-list">
-                                <li> <a class="nav-footer-link" href="#">About Us</a> </li>
-                                <li> <a class="nav-footer-link" href="#">Policies</a> </li>
-                                <li> <a class="nav-footer-link" href="#">Accessibility</a> </li>
-                                <li> <a class="nav-footer-link" href="#">Address</a> </li>
-                                <li> <a class="nav-footer-link" href="#">Reservations</a> </li>
-                            </ul>
-                        </section>
-
-
-                        <!--Let Us Help You-->
-                        <section>
-                            <h3>Let Us Help You</h3>
-                            <ul class="nav-footer-list">
-                                <li> <a class="nav-footer-link" href="#">Your Account</a> </li>
-                                <li> <a class="nav-footer-link" href="#">Complains</a> </li>
-                                <li> <a class="nav-footer-link" href="#">Contact Us</a> </li>
-                                <li> <a class="nav-footer-link" href="#">Help Center</a> </li>
-                                <li> <a class="nav-footer-link" href="#">Submit Feedback</a> </li>
-                            </ul>
-                        </section>
-                    </div>
-                </div>
-                <section class="download-app">
-                    <h3>Get the App</h3>
-                    <div class="cta-app-container">
-                        <a href="#"><img src="./imgs/apple.png" alt="Our app from App Store"></a>
-                        <a href="#"><img src="./imgs/googleplay.png" alt="Our app from Google play"></a>
-                    </div>
-                </section>
-                <p class="footer-legal" >&copy; 2023. All rights reserved.</p>
-            </footer>
+            <?php 
+                include "./parts/footer-homepage.php";
+            ?>
             <!--footer-->
+
         </main>
     </div>
+
+    <script>
+        function updateSubtotal(input) {
+            var amount = input.value;
+            var dishPrice = <?php echo $dishPrice; ?>;
+            var subtotal = amount * dishPrice;
+
+            document.getElementById('amount-subtotal').textContent = '$' + subtotal;
+            document.getElementById('confirmation-amount').textContent = amount;
+
+            var totalPrice = amount * dishPrice;
+            document.getElementById('confirmation-total-price').textContent = '$' + totalPrice;
+            document.getElementById('confirmation-total-price-last').textContent = '$' + totalPrice;
+            
+        }
+
+        
+    </script>
+    
 </body>
 
 </html>

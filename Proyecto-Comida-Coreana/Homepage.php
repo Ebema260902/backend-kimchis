@@ -92,19 +92,29 @@
 
                 <?php 
                 echo "<div class='dishes-container-php'>";
-                foreach ($dishes as $dish) {
-                    
-                        echo "<section class='dish'>";
-                            echo "<h3 class='dish-title-php'>".$dish["dish_name"]."</h3>";
-                            echo "<div class='dish-thumb'>";
-                                echo "<img class='dish-image' src='./imgs/".$dish["dish_image"]."'alt='".$dish["dish_name"]."'>";
-                            echo "</div>";
-                            echo "<p class='dish-text-php'>".substr($dish["dish_description"], 0, 90)."...</p>";
-                            echo "<div>";
-                                echo "<a class='btn-cart' href='#'></a>";
-                                echo "<a class='btn-info' href='./Dish.php?id=".$dish["id_dish"]."'></a>";
-                            echo "</div>";
-                        echo "</section>";          
+                $dishesCount = count($dishes);
+                $numberContainers = 12;
+
+                for ($i = 0; $i < $numberContainers; $i++) {
+                
+                    if ($i < $dishesCount) {
+                        $dish = $dishes[$i]; 
+                            echo "<section class='dish'>";
+                                echo "<h3 class='dish-title-php'>".$dish["dish_name"]."</h3>";
+                                echo "<div class='dish-thumb'>";
+                                    echo "<img class='dish-image' src='./imgs/".$dish["dish_image"]."'alt='".$dish["dish_name"]."'>";
+                                echo "</div>";
+                                echo "<p class='dish-text-php'>".substr($dish["dish_description"], 0, 90)."...</p>";
+                                echo "<div>";
+                                    echo "<a class='btn-cart' href='#'></a>";
+                                    echo "<a class='btn-info' href='./Dish.php?id=".$dish["id_dish"]."'></a>";
+                                echo "</div>";
+                            echo "</section>";          
+                    }else{
+                        echo "<section class='dish empty-dish'>";
+                            echo "<p class='empty-message'>Oops! There are no dishes here at the moment.</p>";
+                        echo "</section>";
+                    }
                 }
 
                 ?>

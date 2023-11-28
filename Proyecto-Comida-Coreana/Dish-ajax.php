@@ -1,76 +1,44 @@
 <?php 
     require_once '../database.php';
-   
-    $lang = "KO";
-    $url_params = "";
+    // Reference: https://medoo.in/api/select
+    // tb_dishes and tb_categories JOIN
+    
 
+
+    
     if($_GET){
-        if(isset($_GET["lang"]) && $_GET["lang"] == "ko"){
-            $dish = $database->select("tb_dish", [
-                "[>]tb_categories" => ["id_category" => "id_category"],
-                "[>]tb_number_of_people" => ["id_number_of_people" => "id_number_of_people"]
-                
-            ], [
-                "tb_dish.id_dish",
-                "tb_dish.dish_name_ko",
-                "tb_dish.dish_description_ko",
-                // "tb_dish.dish_name",
-                // "tb_dish.dish_description",
-                "tb_dish.dish_image",
-                "tb_dish.dish_price",
-                "tb_dish.featured_dish",
-                "tb_categories.id_category",
-                "tb_categories.name_category",
-                "tb_number_of_people.id_number_of_people",
-                "tb_number_of_people.name_group_size"
-            ], [
-                "id_dish"=>$_GET["id"]
-            ]);
-
-            //references
-            $dish[0]["dish_name"] = $dish[0]["dish_name_ko"];
-            $dish[0]["dish_description"] =  $dish[0]["dish_description_ko"];
-
-            $lang = "EN";
-            $url_params = "?id=".$dish[0]["id_dish"];
-
-
+        $dish = $database->select("tb_dish", [
+            "[>]tb_categories" => ["id_category" => "id_category"],
+            "[>]tb_number_of_people" => ["id_number_of_people" => "id_number_of_people"]
             
-
-        }else{
-            $dish = $database->select("tb_dish", [
-                "[>]tb_categories" => ["id_category" => "id_category"],
-                "[>]tb_number_of_people" => ["id_number_of_people" => "id_number_of_people"]
-                
-            ], [
-                "tb_dish.id_dish",
-                "tb_dish.dish_name",
-                "tb_dish.dish_name_ko",
-                "tb_dish.dish_description",
-                "tb_dish.dish_description_ko",
-                "tb_dish.dish_image",
-                "tb_dish.dish_price",
-                "tb_dish.featured_dish",
-                "tb_categories.id_category",
-                "tb_categories.name_category",
-                "tb_number_of_people.id_number_of_people",
-                "tb_number_of_people.name_group_size"
-            ], [
-                "id_dish"=>$_GET["id"]
-            ]);
-        
-
-
-            $lang = "KO";
-            $url_params = "?id=".$dish[0]["id_dish"]."&lang=ko";
-        }
+        ], [
+            "tb_dish.id_dish",
+            "tb_dish.dish_name",
+            "tb_dish.dish_name_ko",
+            "tb_dish.dish_description",
+            "tb_dish.dish_description_ko",
+            "tb_dish.dish_image",
+            "tb_dish.dish_price",
+            "tb_dish.featured_dish",
+            "tb_categories.id_category",
+            "tb_categories.name_category",
+            "tb_number_of_people.id_number_of_people",
+            "tb_number_of_people.name_group_size"
+        ], [
+            "id_dish"=>$_GET["id"]
+        ]);
     }
+
+    // var_dump($dish);
+
+    $url_params = "?id=".$dish[0]["id_dish"];
 
     // RELATED DISHES
     $currentCategory = $dish[0]["id_category"];
+
     $relatedDishes = $database->select("tb_dish", [
         "[>]tb_categories" => ["id_category" => "id_category"],
-        "[>]tb_number_of_people" => ["id_number_of_people" => "id_number_of_people"]
+        "[>]tb_number_of_people" => ["id_number_of_people" => "id_number_of_people"],
         
     ], [
         "tb_dish.id_dish",
@@ -131,14 +99,13 @@
 
             <div class="dish-container">
             <?php 
-            
-                    echo "<a class = 'lang-btn' href='dish.php". $url_params."'>".$lang."</a>";   
-                    echo "<h1 class='name-dish'>".$dish[0]["dish_name"]."</h1>";
+                    echo "<span id='lang' class='lang-btn' onclick='getTranslation(".$dish[0] ["id_dish"].")'>KO</span>";     
+                    echo "<h1 id='dish-name' class='name-dish'>".$dish[0]["dish_name"]."</h1>";
                     echo "<div class='dish-container-space'>";
                         echo "<img class='dish-image-space' src='./imgs/".$dish[0]["dish_image"]."' alt='".$dish[0]["dish_name"]."'>";
                     echo "</div>";
                     echo "<span class='individual-dish-price'>$".$dish[0]["dish_price"]."</span>";
-                    echo "<p class='text-individual-dish'>".$dish[0]["dish_description"]."</p>";
+                    echo "<p id='dish-description' class='text-individual-dish'>".$dish[0]["dish_description"]."</p>";
                     echo "<div class='individual-dish-logos'>";
                     if ($dish[0]["id_number_of_people"] == 1) {
                         echo "<img src='./imgs/imgsproyect/familiar-logo.png' alt='familiar-logo'>";
@@ -186,8 +153,7 @@
                         echo "<h2>Not Founded</h2>";
                     }
 
-                    echo "<a class='order-now' href='./specifications.php?id=".$dish[0]["id_dish"]."'>ORDER NOW</a>";
-                    
+                    echo "<a class='order-now' href='./specifications.php?id=".$dish[0]["id_dish"]."'>Order Now</a>";
 
                     echo "</div>";
 
@@ -217,6 +183,7 @@
                 if ($i < $relatedDishesCount) {
                     $relatedDish = $relatedDishes[$i];
                     echo "<section class='dish'>";
+                    
                         echo "<h3 class='dish-title'>" . $relatedDish["dish_name"] . "</h3>";
                         echo "<div class='dish-thumb'>";
                             echo "<img class='dish-image' src='./imgs/" . $relatedDish["dish_image"] . "' alt=''>";
@@ -236,19 +203,59 @@
             }
         ?>
 
-                    </div>
-                </section>
-            </div>
+                        </div>
+                    </section>
+                </div>
 
-                </section>
-            </div>
+            </section>
+        </div>
 
 
 
-        <?php 
-            include "./parts/footer-homepage.php";
-        ?>
+            <?php 
+                include "./parts/footer-homepage.php";
+            ?>
         <!-- </div> End main-container -->
+
+        <script>
+
+            let requestLang = "ko";
+
+            function switchLang(){
+                if(requestLang == "en") requestLang = "ko";
+                else requestLang = "en";
+                document.getElementById("lang").innerText = requestLang;
+            }
+
+            function getTranslation(id){
+                console.log(id); 
+
+                let info = {
+                    id_dish: id,
+                    language: requestLang 
+                };
+
+                //fetch
+                fetch("http://localhost/backend-kimchis/Proyecto-Comida-Coreana/language.php", {
+                    method: "POST",
+                    mode: "same-origin",
+                    credentials: "same-origin",
+                    headers: {
+                        'Accept': "application/json, text/plain, /",
+                        'Content-Type': "application/json"
+                    },
+                    body: JSON.stringify(info)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    //console.log(data);
+                    switchLang();
+                    document.getElementById("dish-name").innerHTML = data.name;
+                    document.getElementById("dish-description").innerHTML = data.description;
+                })
+                .catch(err => console.log("error: " + err));
+            }
+    </script>
         
 </body>
 </html>
