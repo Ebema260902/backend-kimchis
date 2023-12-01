@@ -38,7 +38,7 @@
                     echo "<h3 class='word-category'>".$category["name_category"]."</h3>";
                     echo "<img class='category-container' src='imgs/imgsMenu/ImgMenu.png' alt='Imagen encabezado' >";
                     
-                    echo "<div class='activities-container'>";
+                    
                         //select destinations with the same category id/name
                         $dishes = $database->select("tb_dish", [
                             "[>]tb_categories" => ["id_category" => "id_category"]
@@ -62,13 +62,12 @@
                                 echo "<p class='description'>".substr($dish["dish_description"], 0, 150)."...</p>";
                             echo "<div>";
                                 echo "<span class='price'>$".$dish["dish_price"]."</span>";
-                                echo "<button class='button' type='button'><img src='imgs/imgsMenu/BotonCarrito.png'> </button>";
-                                echo "<button class='button2' type='button'><img src='imgs/imgsMenu/BotonInfo.png'> </button>";
+                                echo "<a class='btn-cart' href='./specifications.php?id=".$dish["id_dish"]."'></a>";
+                                echo "<a class='btn-info' href='./Dish.php?id=".$dish["id_dish"]."'></a>";
                             echo "</div>";
                             echo "</section>";
                         }
 
-                    echo "</div>";
                     echo "</div>";
                     echo "</section>";
                 }
