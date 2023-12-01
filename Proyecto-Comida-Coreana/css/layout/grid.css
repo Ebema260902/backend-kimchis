@@ -106,7 +106,10 @@
 }
 
 .specifications-for-cart{
-    display: grid;
+    display: flex;
+    gap: 15rem;
+    position: relative;
+    left: 21rem;
 }
 
 /* Media query targeting screens with a maximum width of 767.98 pixels. */
