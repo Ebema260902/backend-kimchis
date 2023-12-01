@@ -4,11 +4,11 @@
                 <div>
                     <a class="logo-image" href="#"><img src="./imgs/imgsproyect/Logo Kimchis 1imgs2.png" alt="Kimchis logo"></a>
                 </div>
-                    <a class="name-kimchis" href="./Homepage.html">KIMCHIS</a>
+                    <a class="name-kimchis" href="./Homepage.php">KIMCHIS</a>
                 
                 <ul class="nav-list">
-                    <li><a class="nav-list-link" href="./Menu.html">Menu</a></li>
-                    <li><a class="nav-list-link" href="./Menu.html">Reservations</a></li>
+                    <li><a class="nav-list-link" href="./Menu.php">Menu</a></li>
+                    <li><a class="nav-list-link" href="./Menu.php">Reservations</a></li>
                     <?php 
                         session_start();
                         if(isset($_SESSION["isLoggedIn"])){
