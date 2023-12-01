@@ -67,10 +67,32 @@
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
-    <?php 
-        include "./parts/header-homepage.php";
-    ?>
+
     <main>
+
+        <header>
+                <nav class="top-nav">
+                    <div>
+                        <a class="logo-image" href="#"><img src="./imgs/imgsproyect/Logo Kimchis 1imgs2.png" alt="Kimchis logo"></a>
+                    </div>
+                        <a class="name-kimchis" href="./Homepage.html">KIMCHIS</a>
+                    
+                    <ul class="nav-list">
+                        <li><a class="nav-list-link" href="./Menu.html">Menu</a></li>
+                        <li><a class="nav-list-link" href="./Menu.html">Homepage</a></li>
+                        <?php 
+                            session_start();
+                            if(isset($_SESSION["isLoggedIn"])){
+                                echo "<li><a class='nav-list-link' href='profile.php'>".$_SESSION["fullname"]."</a></li>";
+                                echo "<li><a class='nav-list-link' href='logout.php'>Logout</a></li>";
+                            }else{
+                                echo "<li><a class='nav-list-link' href='./forms.php'>Login</a></li>";
+                            }
+                        ?>
+                </nav>
+
+                
+        </header>
         <!-- destinations -->
         <section class="destinations-container booking-container">
             <img class="form-img" src="./imgs/imgsproyect/form-img.png" alt="Img Form">
