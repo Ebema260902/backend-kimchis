@@ -1,10 +1,4 @@
 <?php 
-    /***
-     * 0. include database connection file
-     * 1. receive form values from post and insert them into the table (match table field with values from name atributte)
-     * 2. for the destination_image insert the value "destination-placeholder.webp"
-     * 3. redirect to destinations-list. php after complete the insert into
-     */
 
      require_once '../../database.php';
 
@@ -29,11 +23,12 @@
             "dish_description_ko"=>$_POST["dish_description_ko"],
             "dish_image"=> "dish-placeholder.jpg",
             "dish_price"=>$_POST["dish_price"]
-        ]);
 
+            
+        ]);       
         
-       
      }
+     var_dump($_POST["featured_dish"]);
 
     
 ?>
@@ -124,9 +119,7 @@
                 }
                 reader.readAsDataURL(input.files[0]);
             }
-        }
-        
-       
+        } 
     </script>
     
 </body>

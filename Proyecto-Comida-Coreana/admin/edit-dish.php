@@ -21,7 +21,7 @@
         $dish = $database->select("tb_dish","*",[
             "id_dish" => $_GET["id"],
         ]);
-        // var_dump($dish);   
+         var_dump($dish);   
      }
 
      if($_POST){
@@ -38,6 +38,7 @@
             $file_tmp = $_FILES["dish_image"]["tmp_name"];
             $file_type = $_FILES["dish_image"]["type"];
             $file_ext_arr = explode(".", $_FILES["dish_image"]["name"]);
+
             $file_ext = end($file_ext_arr);
             $img_ext = ["jpeg", "png", "jpg", "webp"];
 
@@ -74,9 +75,9 @@
         ]);
         
         header("location: list-dishes.php");
-        
-        
+             
      }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -120,13 +121,13 @@
                 <label for="dish_people">Group Size</label>
                 <select name="dish_people" id="dish_people">
                 <?php 
-                        foreach($number_of_people as $group_size){
-                            if($dish[0]["id_number_of_people"] == $group_size["id_number_of_people"]){
-                                echo "<option value='".$group_size["id_number_of_people"]."' selected>".$group_size["name_group_size"]."</option>";
-                            }else{
-                                echo "<option value='".$group_size["id_number_of_people"]."'>".$group_size["name_group_size"]."</option>";
-                            }
+                    foreach($number_of_people as $group_size){
+                        if($dish[0]["id_number_of_people"] == $group_size["id_number_of_people"]){
+                            echo "<option value='".$group_size["id_number_of_people"]."' selected>".$group_size["name_group_size"]."</option>";
+                        }else{
+                            echo "<option value='".$group_size["id_number_of_people"]."'>".$group_size["name_group_size"]."</option>";
                         }
+                    }
                     ?>
                 </select>
             </div>

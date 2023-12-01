@@ -86,6 +86,7 @@
     top: 1rem; 
 }
 
+
 .dish-title-php{
     font-size: 1.3rem;
     font-family: var(--ff-main);
@@ -327,6 +328,24 @@
         bottom: 0rem;
     }
 
+}
+
+/* CART */
+
+.dishes-title-cart{
+    font-family: var(--ff-main);
+    font-size: clamp(var(--fs-md), 1.875rem, var(--fs-lg));
+    margin: 1rem auto;
+    width: 17ch;
+    color: black;
+}
+
+
+.dish-specification-title{
+    margin: 1rem 0 0;
+    font-size: var(--fs-md);
+    font-family: var(--ff-main);
+    color: black;
 }
 
 

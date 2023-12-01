@@ -3,9 +3,7 @@
     require_once '../database.php';
 
     $amount = 1;
-
     
-
 
     if($_GET){
        
@@ -31,7 +29,9 @@
         $dishPrice = $dish[0]["dish_price"];
 
         $dishName = $dish[0]['dish_name'];
-        
+
+
+ 
 
         // Reference: https://medoo.in/api/select
     
@@ -133,67 +133,69 @@
 
 
                 <!-- SEPECIFICATIONS -->
-                <div class="container-specifications">
+                <div class="overlay" id="overlay" style="display: none;"></div>
+                    <div id="containerSpecifications" class="container-specifications">
 
-                     <div>
-                         <h1 class="text-specifications">Specifications</h1>
-                    </div>
+                        <div>
+                            <h1 class="text-specifications">Specifications</h1>
+                        </div>
 
-                    <?php 
-                        echo "<section>";
+                        <?php 
+                            echo "<section>";
 
-                            echo "<div class='order-items-specifications'>";
-                                echo "<div>";
-                                    echo "<label class='label-amount' step='1' for='order'>Amount</label>";
+                                echo "<div class='order-items-specifications'>";
+                                    echo "<div>";
+                                        echo "<label class='label-amount' step='1' for='order'>Amount</label>";
+                                    echo "</div>";
+                                    echo "<div>";
+                                        echo "<input class='input-amount' name='order' type='number' oninput='updateSubtotal(this)' step='1' value='0' min='0' max='50'>";
+                                    echo "</div>";
+                                    echo "<div>";
+                                        echo "<p type='number' id='amount-subtotal' value='0' min='0' max='50'>$0</p>";  
+                                    echo "</div>";
                                 echo "</div>";
-                                echo "<div>";
-                                    echo "<input class='input-amount' name='order' type='number' oninput='updateSubtotal(this)' step='1' value='0' min='0' max='50'>";
+
+
+                                echo "<div class='order-items-specifications'>";
+                                    echo "<div>";
+                                        echo "<label class='label-suace' step='1' for='sauce'>Date:</label>";
+                                    echo "</div>";
+                                    echo "<div>";
+                                    echo "<label class='label-suace' step='1' for='sauce'>27/11/2013</label>";
+                                    echo "</div>";
                                 echo "</div>";
-                                echo "<div>";
-                                    echo "<p type='number' id='amount-subtotal' value='0' min='0' max='50'>$0</p>";  
-                                echo "</div>";
-                            echo "</div>";
 
+                            echo "</section>";
 
-                            echo "<div class='order-items-specifications'>";
-                                echo "<div>";
-                                    echo "<label class='label-suace' step='1' for='sauce'>Date:</label>";
-                                echo "</div>";
-                                echo "<div>";
-                                echo "<label class='label-suace' step='1' for='sauce'>27/11/2013</label>";
-                                echo "</div>";
-                            echo "</div>";
-
-                        echo "</section>";
-
-                        // LINE DIV
-                        echo "<div>";
-                            echo "<img class='line-div' src='../Proyecto-Comida-Coreana/imgs/imgsproyect/line-div.png' alt=''>";
-                        echo "</div>";
-
-
-                        echo "<section>";
+                            // LINE DIV
                             echo "<div>";
-                                echo "<h1 class='text-subtitles'>Total:</h2>";
-                                echo "<h2 id='confirmation-total-price' class='total-price'>0$</h2>";
+                                echo "<img class='line-div' src='../Proyecto-Comida-Coreana/imgs/imgsproyect/line-div.png' alt=''>";
                             echo "</div>";
-                        echo "</section>";
-                        
-                    ?>
 
 
-                    <div class="btn-container">
-                        <a class="btn-add-to-cart" href="#">Next</a>
+                            echo "<section>";
+                                echo "<div>";
+                                    echo "<h1 class='text-subtitles'>Total:</h2>";
+                                    echo "<h2 id='confirmation-total-price' class='total-price'>0$</h2>";
+                                echo "</div>";
+                            echo "</section>";
+                            
+                        ?>
+
+
+                        <div class="btn-container">
+                            <a id="nextButton" class="btn-add-to-cart" href="#" onclick="next()">Next</a>
+                        </div>
+
                     </div>
-
                 </div>
 
             </div>
 
 
-            
-            <div class="container-illustrative">
-                <!-- <img src='./imgs/imgsproyect/illustrative-food.jpg' alt='illustrative-food'> -->
+            <!-- YOUR DISH -->
+
+            <div id="containerIllustrative" class="container-illustrative" style="display: none;">
                 <div>
                     <h1 class="text-your-dish">Your dish</h1>
                 </div>
@@ -222,26 +224,14 @@
                         echo "<p id='confirmation-amount'>0</p>";
                         echo "<p id='confirmation-total-price-last'>0$</p>";
                     echo "</section>";
-
-
-                    echo "<div class='btn-container-confirm'>";
-                        echo "<a class='btn-confirm-2' href='./cart.php?id=".$dish[0]["id_dish"]."'>Confirm</a>";
-                        echo "<a class='btn-add-dishes' href='#'>Add more dishes</a>";
-                    echo "</div>";
-                
                 ?>
 
-
-                <!-- <div class="btn-container-confirm">
-                    <a class="btn-confirm-2" href="#">Confirm</a>
-                    
-                    <a class="btn-add-dishes" href="#">Add more dishes</a>
-                </div> -->
+                <div class="btn-container-confirm">
+                    <a id="confirmButton" class="btn-confirm-2" href="./cart.php?id=<?php echo $dish[0]["id_dish"]; ?>" style="pointer-events: none;">Confirm</a>
+                    <a id="addDishesButton" class="btn-add-dishes" href="./Menu.php?id=<?php echo $dish[0]["id_dish"]; ?>" style="pointer-events: none;">Add more dishes</a>
+                </div>
 
             </div>
-
-            
-
 
             <div class="bowl-container">
                 <img class="bowl-img" src="../Proyecto-Comida-Coreana/imgs/imgsproyect/Bowl Imágenimgs2.png" alt="Decorative Bowl">
@@ -258,7 +248,12 @@
         </main>
     </div>
 
+    
+
     <script>
+
+        var nextButtonClicked = false;
+
         function updateSubtotal(input) {
             var amount = input.value;
             var dishPrice = <?php echo $dishPrice; ?>;
@@ -273,8 +268,26 @@
             
         }
 
-        
+        function next() {
+      
+        if (!nextButtonClicked) {
+            nextButtonClicked = true;
+
+          
+            document.getElementById('confirmButton').style.pointerEvents = 'auto';
+            document.getElementById('addDishesButton').style.pointerEvents = 'auto';
+
+            // document.getElementById('mainContainer').classList.add('disabled-container');
+
+            document.getElementById('containerIllustrative').style.display = 'block';
+
+           
+        }
+    }
+
     </script>
+
+
     
 </body>
 

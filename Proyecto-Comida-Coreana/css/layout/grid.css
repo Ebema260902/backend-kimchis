@@ -92,6 +92,23 @@
     height: 2rem;
 }
 
+/* CART */
+.dishes-container-cart{
+    text-align: center;
+}
+
+.specifications-container-cart{
+    display: grid;
+    width: 80vw;
+    margin: 2rem auto;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.specifications-for-cart{
+    display: grid;
+}
+
 /* Media query targeting screens with a maximum width of 767.98 pixels. */
 @media (max-width: 767.98px){
 

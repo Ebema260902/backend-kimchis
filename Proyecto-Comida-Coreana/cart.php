@@ -1,5 +1,17 @@
 
 
+<?php 
+    require_once '../database.php';
+
+    $specifications = [];
+    
+    if($_POST){
+        $data = json_decode($_COOKIE['dishes'], true);
+        $specifications = is_array($data) ? $data : [];
+
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,23 +43,58 @@
                 </ul>
             </nav>
 
-            <main>
-            <section>
-                <h1 class="title-cart">Review your cart</h1>
-            </section>
-        </main>
+        <main>
+
+        <h2 class="dishes-title-cart">Review your cart</h2>
+        
+        <section class="dishes-container-cart">
+            
+            <?php 
+                
+                $data = json_decode($_COOKIE['dishes'], true);
+        
+                $specifications = $data;
+                //var_dump($data);
+            ?>
            
-        </header>
-        
-        
-          
+                <table class="specifications-for-cart">
+                    <tr class='dish-specification-title'>
+                        <td>Dish</td>
+                        <td>Date</td>
+                        <td>Amount</td>
+                        <td>Price</td>
+                    </tr>
+                <?php
+            
+                    foreach ($specifications as $index=>$specific){
+                        $subtotal_dish = ($specific["amount"] * $specific["price"]);
+                        $data = $database->select("tb_dish","*",["id_destination" => $booking["id"]]);
+                        echo "<tr><td></td></tr>";
+                        echo "<tr>"
+                                ."<td class='activity-title'>".$data[0]["dish_name"]."</td>"
+                                ."<td>".$specific["amount"]."</td>"
+                                ."<td>".$specific["price"]."</td>"
+                                ."<td> $".$subtotal_dish."</td>"
+                            ."</tr>";
+                            
+                        }
+                ?>
+                </table> 
+           
 
 
+            <div>
+                <div><a class="order-now" href='cart.php'>I'm ready for booking</a></div>
+            </div>
+
+        </section>
+
+    </main>
+           
+ </header>
 
         <?php 
             include "./parts/footer-homepage.php";
         ?>
-        <!-- </div> End main-container -->
-        
 </body>
 </html>
