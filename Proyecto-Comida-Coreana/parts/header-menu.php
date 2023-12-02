@@ -10,14 +10,12 @@
         </ul>
 
     </nav>
-</header>
-<main>
-        <section class="landing-page">
+    <section class="landing-page">
 
             <img class="img-container" src="./imgs/imgsMenu/ComidaInicio.jpg" alt="Menú"><span class="txt-container">김치</span>
             <div class="rectangle">
                 <h1>MENU</h1>
             </div>
-        </section>
-</main>
+    </section>
+</header>
         

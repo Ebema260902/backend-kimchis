@@ -1,0 +1,53 @@
+/*SEARCH.PHP*/
+
+.btnn{
+    display: flex;
+    align-items: center;
+    background-color: #AB473E;
+    padding: .5rem 2rem;
+    border-radius: 1.5rem;
+    text-decoration: none;
+}
+
+.btn-search{
+    display: inline-block;
+    color: var(--clr-white);
+    border: none;
+    width: 180px; 
+    height: 50px; 
+    font-size: 17px;
+}
+
+.filter{
+    border: none;
+    padding: 0.7rem;
+    margin: 5px;
+    background-color:antiquewhite;
+}
+
+/* Styles for a grid container displaying dishes. */
+.container-dish{
+    display: grid;
+    width: 78vw;
+    height: 70px;
+    margin: 2rem auto;
+    
+}
+
+.search-container{
+    text-align: center;
+}
+
+.search-title {
+    font-family: var(--ff-main);
+    font-size: clamp(var(--fs-md), 1.875rem, var(--fs-lg));
+    margin: 1rem auto;
+    width: 17ch;
+
+}
+
+
+
+
+/*RESULTS.PHP*/
+

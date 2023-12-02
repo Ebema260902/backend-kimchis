@@ -19,6 +19,7 @@
 /*Imagen Inicio*/
 .img-container{
     width: 100%;
+    border-radius: 0 0 70px 70px;
 }
 
 .txt-container{
