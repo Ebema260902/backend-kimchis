@@ -30,7 +30,7 @@
             include "./parts/header-menu.php";
         ?>
 
-    <section class="content">;
+    <section class="content">
     <?php 
                 foreach($categories as $category){
                     
@@ -62,8 +62,7 @@
                                 echo "<p class='description'>".substr($dish["dish_description"], 0, 150)."...</p>";
                             echo "<div>";
                                 echo "<span class='price'>$".$dish["dish_price"]."</span>";
-                                echo "<a class='btn-cart' href='./specifications.php?id=".$dish["id_dish"]."'></a>";
-                                echo "<a class='btn-info' href='./Dish.php?id=".$dish["id_dish"]."'></a>";
+                                echo "<a class='button-info' href='./Dish.php?id=".$dish["id_dish"]."'></a>";
                             echo "</div>";
                             echo "</section>";
                         }
