@@ -5,11 +5,17 @@
 
     $specifications = [];
     
-    if($_POST){
+    var_dump($_COOKIE);
+// Era por post
+    if(isset($_COOKIE['dishes']) && $_COOKIE['dishes'] !== null) {
         $data = json_decode($_COOKIE['dishes'], true);
         $specifications = is_array($data) ? $data : [];
-
     }
+
+    $dishPrice = isset($_COOKIE['dish_price']) ? $_COOKIE['dish_price'] : 0;
+    $dishName = isset($_COOKIE['dish_name']) ? $_COOKIE['dish_name'] : '';
+    $amount = isset($_COOKIE['amount']) ? $_COOKIE['amount'] : 0;
+    $totalPrice = isset($_COOKIE['total_price']) ? $_COOKIE['total_price'] : 0;  
 ?>
 
 <!DOCTYPE html>
@@ -49,42 +55,46 @@
         
         <section class="dishes-container-cart">
             
-            <?php 
-                
-                $data = json_decode($_COOKIE['dishes'], true);
-        
-                $specifications = $data;
-                //var_dump($data);
-            ?>
+    
            
-                <table class="specifications-for-cart">
-                    <tr class='dish-specification-title'>
-                        <td>Dish</td>
-                        <td>Date</td>
-                        <td>Amount</td>
-                        <td>Price</td>
-                    </tr>
-                <?php
+           
+
+
+           <?php
+        //    var_dump($specifications);
+           if (!empty($specifications)) {
+                echo "<table>2";
+                    echo "<tr class='specifications-for-cart'>";
+                        echo "<td class='dish-specification-title'>Dish</td>";
+                        echo "<td class='dish-specification-title'>Date</td>";
+                        echo "<td class='dish-specification-title'>Amount</td>";
+                        echo "<td class='dish-specification-title'>Price</td>";
+                    echo "</tr>";                
             
                     foreach ($specifications as $index=>$specific){
-                        $subtotal_dish = ($specific["amount"] * $specific["price"]);
-                        $data = $database->select("tb_dish","*",["id_destination" => $booking["id"]]);
-                        echo "<tr><td></td></tr>";
-                        echo "<tr>"
-                                ."<td class='activity-title'>".$data[0]["dish_name"]."</td>"
-                                ."<td>".$specific["amount"]."</td>"
-                                ."<td>".$specific["price"]."</td>"
-                                ."<td> $".$subtotal_dish."</td>"
-                            ."</tr>";
-                            
-                        }
+                        $amount = isset($specific["amount"]) ? $specific["amount"] : 0;
+                            $subtotal_dish = ($specific["amount"] * $specific["price"]);
+                            $data = $database->select("tb_dish","*",["id_dish" => $specific["id"]]);
+                            echo "<tr><td></td></tr>";
+                            echo "<tr class='specifications-for-cart'>"
+                                    ."<td >".$data[0]["dish_name"]."</td>"
+                                    ."<td>".$specific["amount"]."</td>"
+                                    ."<td>".$specific["price"]."</td>"
+                                    ."<td> $".$subtotal_dish."</td>"
+                                ."</tr>";    
+                    }
+                    echo "</table>"; 
+                }else{
+                    echo "<p class='empty-cart'>Your cart is empty.</p>";
+
+                }
                 ?>
-                </table> 
+                
            
 
 
             <div>
-                <div><a class="order-now" href='cart.php'>I'm ready for booking</a></div>
+                <div><a class="btn-finish" href='cart.php'>Finish order</a></div>
             </div>
 
         </section>

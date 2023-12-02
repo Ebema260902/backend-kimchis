@@ -348,6 +348,12 @@
     color: black;
 }
 
+.empty-cart{
+    font-size: var(--fs-md);
+    font-family: var(--ff-main);
+    color: black;
+}
+
 
 /* Styles for screens higher than 1366px wifht and 952px height (iPhone 12/13 Pro Max, 14 Plus) */
 @media (max-width: 747px) {

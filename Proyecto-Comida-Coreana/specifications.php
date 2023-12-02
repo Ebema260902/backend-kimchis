@@ -1,4 +1,4 @@
-<!-- Implementación de extras en specifications -->
+
 <?php
     require_once '../database.php';
 
@@ -7,6 +7,7 @@
 
     if($_GET){
        
+        
         // Reference: https://medoo.in/api/select
         $dish = $database->select("tb_dish",[
             "[>]tb_categories"=>["id_category" => "id_category"],
@@ -26,11 +27,57 @@
             "id_dish"=>$_GET["id"]
         ]);
 
-        $dishPrice = $dish[0]["dish_price"];
-
-        $dishName = $dish[0]['dish_name'];
 
 
+        
+
+        if ($_GET && !isset($_COOKIE['dishes']))  {
+
+            $dish = $database->select("tb_dish",[
+                "[>]tb_categories"=>["id_category" => "id_category"],
+                "[>]tb_number_of_people"=>["id_number_of_people" => "id_number_of_people"]
+            ],[
+                "tb_dish.id_dish",
+                "tb_dish.dish_name",
+                "tb_dish.dish_description",
+                "tb_dish.dish_image",
+                "tb_dish.dish_price",
+                "tb_dish.featured_dish",
+                "tb_categories.id_category",
+                "tb_categories.name_category",
+                "tb_number_of_people.id_number_of_people",
+                "tb_number_of_people.name_group_size"
+            ],[
+                "id_dish"=>$_GET["id"]
+            ]);
+     
+        
+            $dishPrice = $dish[0]['dish_price'];
+            $dishName = $dish[0]['dish_name']; 
+             
+
+            $dishInfo = [
+                "id" => $dish[0]["id_dish"],
+                "name" => $dish[0]["dish_name"],
+                "price" => $dish[0]["dish_price"],
+            ];
+            $currentDishes = isset($_COOKIE['dishes']) ? json_decode($_COOKIE['dishes'], true) : [];
+
+            $currentDishes[] = $dishInfo;
+
+            setcookie('dishes', json_encode([$dishInfo]), time() + 3600, '/');
+
+            setcookie('dish_price', $dishPrice, time() + 3600, '/');
+            setcookie('dish_name', $dishName, time() + 3600, '/');
+            setcookie('amount', 0, time() + 3600, '/');
+            setcookie('total_price', 0, time() + 3600, '/');
+
+
+            if (isset($_COOKIE['dishes'])) {
+                header('Location: cart.php');
+                exit();
+            }
+        }
  
 
         // Reference: https://medoo.in/api/select
@@ -86,7 +133,7 @@
                         echo "<img src='./imgs/imgsproyect/heart-logo.png' alt='dish-space'>";
                         echo "</div>";
                         echo "<a href='./Homepage.php''><img class='arrow-back' src='./imgs/imgsproyect/arrowback.png' alt='arrowback'></a>";
-                    echo "<div  class='features-text-specifications'>";
+                    echo "<div class='features-text-specifications'>";
                     if ($dish[0]["id_number_of_people"] == 1) {
                         echo "<h2>Familiar</h2>";
                     } elseif ($dish[0]["id_number_of_people"] == 2) {
@@ -228,7 +275,7 @@
 
                 <div class="btn-container-confirm">
                     <a id="confirmButton" class="btn-confirm-2" href="./cart.php?id=<?php echo $dish[0]["id_dish"]; ?>" style="pointer-events: none;">Confirm</a>
-                    <a id="addDishesButton" class="btn-add-dishes" href="./Menu.php?id=<?php echo $dish[0]["id_dish"]; ?>" style="pointer-events: none;">Add more dishes</a>
+                    <a id="addDishesButton" class="btn-add-dishes" href="./Menu.php?id=<?php echo $dish[0]["id_dish"]; ?>" style="pointer-events: none;">Add more dishes</a> 
                 </div>
 
             </div>
@@ -255,6 +302,7 @@
         var nextButtonClicked = false;
 
         function updateSubtotal(input) {
+            console.log('Input value:', input.value);
             var amount = input.value;
             var dishPrice = <?php echo $dishPrice; ?>;
             var subtotal = amount * dishPrice;
@@ -265,6 +313,10 @@
             var totalPrice = amount * dishPrice;
             document.getElementById('confirmation-total-price').textContent = '$' + totalPrice;
             document.getElementById('confirmation-total-price-last').textContent = '$' + totalPrice;
+
+            // COOKIES
+            document.cookie = 'amount=' + amount + '; path=/';
+            document.cookie = 'total_price=' + totalPrice + '; path=/';
             
         }
 
@@ -280,9 +332,9 @@
             // document.getElementById('mainContainer').classList.add('disabled-container');
 
             document.getElementById('containerIllustrative').style.display = 'block';
-
-           
         }
+
+        
     }
 
     </script>
