@@ -354,24 +354,6 @@
     top: 2rem;
 }
 
-.btn-finish{
-    background: #646B49;
-    color: white;
-    font-family: 'Inter', sans-serif, white;
-    font-size: var(--fs-md);
-    width: 6rem;
-    height: 1.5rem;
-    padding: .5rem 2rem;
-    border-radius: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none; 
-    position: relative;
-    left: 47rem;
-    top: 2rem;
-}
-
 /* defines color for "english" text */
 .en{
     color: #ffffff;

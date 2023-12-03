@@ -55,7 +55,7 @@
           
                 <form method = "get" action="results.php">
           
-                    <select name="nummber_people" id="nummber_people" class="filter">
+                    <select name="number_people" id="number_people" class="filter">
                     <?php 
                         foreach($peoples as $people){
                             echo "<option value='".$people["id_number_of_people"]."'>".$people["name_group_size"]."</option>";

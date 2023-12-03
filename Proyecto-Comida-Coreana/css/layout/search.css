@@ -51,3 +51,83 @@
 
 /*RESULTS.PHP*/
 
+.result-title{
+    margin: 1rem 0 0;
+    font-size: var(--fs-md);
+    font-family: var(--ff-main);
+}
+
+.result-text{
+    font-size: var(--fs-nm);
+}
+
+.dish-thumb{
+    display: flex;
+    position: relative;
+    padding: 0 1rem;
+}
+
+.result-image{
+    display: block;
+    width: 100%;
+    border-radius: 1rem;
+}
+
+.result-price{
+    display: block;
+    position: absolute;
+    background: var(--clr-white);
+    color: var(--clr-main);
+    text-align: center;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    padding: .5rem 2rem;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.read-btn{
+    display: block;
+    width: 50%;
+    margin: auto;
+    background: var(--clr-gray);
+    color: var(--clr-gray-text);
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    transition: all .3s ease-in-out;
+}
+
+.cta-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5rem;
+}
+
+.dish-principal {
+    display: grid;
+    background: var(--clr-white);
+    border-radius: 2rem;
+    text-align: center;
+    padding: 2rem 1rem;
+    box-shadow: 0px 0px 6px 0.25px #c7c5c5;
+}
+
+.btn-result{
+    margin: auto;
+    padding: 1.1rem 2rem;
+    position: relative;
+    right: rem;
+    bottom: rem;
+    z-index: 2;
+    background-image: url('../../imgs/imgsMenu/BotonInfo.png'); 
+    background-size: cover;
+
+}
+
+.view-all-btn{
+    margin-left: 820px;
+    top: 50px;
+    
+}
