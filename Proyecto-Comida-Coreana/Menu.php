@@ -28,7 +28,7 @@
 
     <?php 
             include "./parts/header-menu.php";
-        ?>
+    ?>
 
     <section class="content">
     <?php 

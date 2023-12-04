@@ -52,8 +52,15 @@
                 <ul class="nav-list">
                     <li><a class="nav-list-link" href="./Menu.php">Menu</a></li>
                     <li><a class="nav-list-link" href="./Menu.php">Reservations</a></li>
-                    <li><a class="nav-list-link" href="./forms.php">Login</a></li>
-                    <li><a class="nav-list-link" href="#">Sign Up</a></li>
+                    <?php 
+                        session_start();
+                        if(isset($_SESSION["isLoggedIn"])){
+                            echo "<li><a class='nav-list-link' href='profile.php'>".$_SESSION["fullname"]."</a></li>";
+                            echo "<li><a class='nav-list-link' href='logout.php'>Logout</a></li>";
+                        }else{
+                            echo "<li><a class='nav-list-link' href='./forms.php'>Login</a></li>";
+                        }
+                     ?>
                 </ul>
 
                 <!-- <ul class="nav-list-login-btn">

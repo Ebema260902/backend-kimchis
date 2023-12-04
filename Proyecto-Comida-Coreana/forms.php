@@ -14,25 +14,17 @@
                     session_start();
                     $_SESSION["isLoggedIn"] = true;
                     $_SESSION["fullname"] = $user[0]["fullname"];
-                    header("location: index.php");
+                    header("location: forms.php");
                 }else{
                     $messageLogin = "wrong username or password";
                 }
             }else{
                 $messageLogin = "wrong username or password";
             }
-            //validate if user already logged in
-            /*session_start();
-            if(isset($_SESSION["isLoggedIn"])){
-                header("location: book.php?id=".$_POST["login"]);
-            }else{
-                //validate login
-                echo "validate login: ".$_POST["login"];
-            }*/
         }
 
         if(isset($_POST["register"])){
-            //validate if user already registered
+           
             $validateUsername = $database->select("tb_users","*",[
                 "usr"=>$_POST["username"]
             ]);
@@ -48,10 +40,12 @@
                     "email"=> $_POST["email"]
                 ]);
 
-                //header("location: book.php?id=".$_POST["register"]);
+                
             }
         }
     }
+
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,66 +61,43 @@
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
+        <header>
+            <nav class="top-nav">
+
+                <a class="logo" href="./Homepage.html"><img src="./imgs/imgsMenu/Logo Kimchis 1imgs2.png" alt="Kimchis logo"><span>KIMCHIS</span> </a>
+
+                <ul class="nav-list">
+                    <li><a class="nav-list-link" href="./Homepage.php">Homepage</a></li>
+                    <li><a class="nav-list-link" href="#">Reservations</a></li>
+                    <?php 
+                                session_start();
+                                if(isset($_SESSION["isLoggedIn"])){
+                                    echo "<li><a class='nav-list-link' href='profile.php'>".$_SESSION["fullname"]."</a></li>";
+                                    echo "<li><a class='nav-list-link' href='logout.php'>Logout</a></li>";
+                                }else{
+                                    echo "<li><a class='nav-list-link' href='./forms.php'>Login</a></li>";
+                                }
+                            ?>
+                </ul>
+
+            </nav>
+            <section class="landing-page">
+
+                    <img class="img-container" src="./imgs/imgsMenu/ComidaInicio0.jpeg" alt="Menú">
+                    <div class="rectangle">
+                        <h1>LOGIN</h1>
+                    </div>
+            </section>
+        </header>
+        
 
     <main>
-
-        <header>
-                <nav class="top-nav">
-                    <div>
-                        <a class="logo-image" href="#"><img src="./imgs/imgsproyect/Logo Kimchis 1imgs2.png" alt="Kimchis logo"></a>
-                    </div>
-                        <a class="name-kimchis" href="./Homepage.php">KIMCHIS</a>
-                    
-                    <ul class="nav-list">
-                        <li><a class="nav-list-link" href="./Menu.php">Menu</a></li>
-                        <li><a class="nav-list-link" href="./Homepage.php">Homepage</a></li>
-                        <?php 
-                            session_start();
-                            if(isset($_SESSION["isLoggedIn"])){
-                                echo "<li><a class='nav-list-link' href='profile.php'>".$_SESSION["fullname"]."</a></li>";
-                                echo "<li><a class='nav-list-link' href='logout.php'>Logout</a></li>";
-                            }else{
-                                echo "<li><a class='nav-list-link' href='./forms.php'>Login</a></li>";
-                            }
-                        ?>
-                </nav>
-
-                
-        </header>
-        <!-- destinations -->
         <section class="destinations-container booking-container">
             <img class="form-img" src="./imgs/imgsproyect/form-img.png" alt="Img Form">
-            <h2 class="destinations-title">Book Online</h2>
+            <h2 class="destinations-title">Enter In</h2>
             <div class="activities-container">
-                <section class='activity'>
-                    <h3 class='activity-title'>Login</h3>
-                    <p>Enter your registered username and password in the designated fields.</p>
-                    <form method="post" action="forms.php">
-                        <div class='form-items'>
-                            <div>
-                                <label class='form-label destination-extra' for='username'>Username</label>
-                            </div>
-                            <div>
-                                <input id='username' class='form-input' type='text' name='username'>
-                            </div>
-                        </div>
-                        <div class='form-items'>
-                            <div>
-                                <label class='form-label destination-extra' for='password'>Password</label>
-                            </div>
-                            <div>
-                                <input id='password' class='form-input' type='password' name='password'>
-                            </div>
-                        </div>
-                        <div class='form-items'>
-                            <div>
-                                <input class='form-input login-btn' type='submit' value="LOGIN">
-                            </div>
-                        </div>
-                        <p><?php echo $messageLogin; ?></p>
-                        <input type="hidden" name="login" value="1">
-                    </form>
-                </section>
+
+
                 <section class='activity'>
                     <h3 class='activity-title'>Sign In</h3>
                     <p>Complete the registration process to enjoy our menu.</p>
@@ -172,13 +143,41 @@
                         <input type="hidden" name="register" value="1">
                     </form>
                 </section>
-                
-                
+
+                <section class='activity'>
+                    <h3 class='activity-title'>Login</h3>
+                    <p>Enter your registered username and password in the designated fields.</p>
+                    <form method="post" action="forms.php">
+                        <div class='form-items'>
+                            <div>
+                                <label class='form-label destination-extra' for='username'>Username</label>
+                            </div>
+                            <div>
+                                <input id='username' class='form-input' type='text' name='username'>
+                            </div>
+                        </div>
+                        <div class='form-items'>
+                            <div>
+                                <label class='form-label destination-extra' for='password'>Password</label>
+                            </div>
+                            <div>
+                                <input id='password' class='form-input' type='password' name='password'>
+                            </div>
+                        </div>
+                        <div class='form-items'>
+                            <div>
+                                <input class='form-input login-btn' type='submit' value="LOGIN">
+                            </div>
+                        </div>
+                        <p><?php echo $messageLogin; ?></p>
+                        <input type="hidden" name="login" value="1">
+                    </form>
+                </section>
+
                 
             </div>
 
         </section>
-        <!-- destinations -->
 
     </main>
     <?php 
