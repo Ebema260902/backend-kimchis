@@ -2,7 +2,6 @@
 .dishes-container{
     display: grid;
     width: 78vw;
-    height: 525px;
     margin: 2rem auto;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;

@@ -19,13 +19,14 @@
 /*Imagen Inicio*/
 .img-container{
     width: 100%;
+    border-radius: 0 0 70px 70px;
 }
 
 .txt-container{
  position: absolute;
- left: 750px;
- top: 500px;
- font-size: 10rem;
+ left: 800px;
+ top: 320px;
+ font-size: 8rem;
  color: white;
 }
 
@@ -59,7 +60,7 @@
 }
 
 .card{
-    padding: 5px;
+    padding: 20px;
     border: 1px grey solid;
     border-radius: 8px;
     margin: 10px;
@@ -84,63 +85,18 @@
     padding: 30px;
 }
 
-.button{
+.button-info{
+    margin: auto;
+    padding: 1.2rem 3rem;
     position: relative;
-    left: 80%;
-    border: none;
-    background: none;
-}
-
-.button2{
-    position: relative;
-    left: 50%;
-    border: none;
-    background: none;
+    left: 35rem;
+    bottom: 0.1rem;
+    background-image: url('../../imgs/imgsMenu/BotonInfo.png'); 
+    background-size: 85%;
+    background-repeat: no-repeat;
 }
 
 .search-img{
     margin-left: 45%;
     margin-top: 30px;
 }
-
-
-
-
-/*.button,
-.button2 {
-    display: flex;
-    width: 1px;
-    
-
-}
-
-
-.button {
-    margin: auto;
-    padding: 1.1rem 2rem;
-    position: relative;
-    left: 2.8rem;
-    bottom: 1rem;
-    z-index: 1;
-    background-image: url('../../imgs/imgsMenu/BotonCarrito.png'); 
-    background-size: cover;
-}
-
-/* Specific styles for the information button 
-.button2 {
-    margin: auto;
-    padding: 1.1rem 2rem;
-    position: relative;
-    right: 3.6rem;
-    bottom: 3.2rem;
-    z-index: 1;
-    background-image: url('../../imgs/imgsMenu/BotonInfo.png'); 
-    background-size: cover;
-}
-
-
-
-
-
-
-
