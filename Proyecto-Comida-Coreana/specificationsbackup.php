@@ -26,56 +26,42 @@
         ]);
         // $amount = $_GET['amount'];
         // var_dump($amount);
-
-
-        if ($_GET && !isset($_COOKIE['dishes']))  {
-            
-            $dish = $database->select("tb_dish",[
-                "[>]tb_categories"=>["id_category" => "id_category"],
-                "[>]tb_number_of_people"=>["id_number_of_people" => "id_number_of_people"]
-            ],[
-                "tb_dish.id_dish",
-                "tb_dish.dish_name",
-                "tb_dish.dish_description",
-                "tb_dish.dish_image",
-                "tb_dish.dish_price",
-                "tb_dish.featured_dish",
-                "tb_categories.id_category",
-                "tb_categories.name_category",
-                "tb_number_of_people.id_number_of_people",
-                "tb_number_of_people.name_group_size"
-            ],[
-                "id_dish"=>$_GET["id"]
-            ]);
-     
- 
-            $dishPrice = $dish[0]['dish_price'];
-            $dishName = $dish[0]['dish_name']; 
-
-            //  $dishAmount = "100";
-            //  $dishTotalPrice = "";
-
-            // var_dump($dishAmount);
-            //Hacer array de dishInfos para pasar información que viene del array dish, que es la que trae informacion de la base de datos 
-            // $dishInfo = [
-            //     "id" => $dish[0]["id_dish"],
-            //     "name" => $dish[0]["dish_name"],
-            //     "price" => $dish[0]["dish_price"],
-            //     "amount" => "200",
-            //     "totalPrice"=> "perro"  
-            // ];
-
-            $currentDishes = isset($_COOKIE['dishes']) ? json_decode($_COOKIE['dishes'], true) : [];
-
-            setcookie('dishes', json_encode([$specifications]), time() + 3600, '/');
-
-
-            if (isset($_COOKIE['dishes'])) {
-                header('Location: cart.php');
-                exit();
-            }
-        }
         // Reference: https://medoo.in/api/select
+    }
+
+    if ($_POST)  {
+            
+        $dish = $database->select("tb_dish",[
+            "[>]tb_categories"=>["id_category" => "id_category"],
+            "[>]tb_number_of_people"=>["id_number_of_people" => "id_number_of_people"]
+        ],[
+            "tb_dish.id_dish",
+            "tb_dish.dish_name",
+            "tb_dish.dish_description",
+            "tb_dish.dish_image",
+            "tb_dish.dish_price",
+            "tb_dish.featured_dish",
+            "tb_categories.id_category",
+            "tb_categories.name_category",
+            "tb_number_of_people.id_number_of_people",
+            "tb_number_of_people.name_group_size"
+        ],[
+            "id_dish"=>$_POST["id_dish"]
+        ]);
+ 
+
+        $dishPrice = $dish[0]['dish_price'];
+        $dishName = $dish[0]['dish_name']; 
+
+        // $currentDishes = isset($_COOKIE['dishes']) ? json_decode($_COOKIE['dishes'], true) : [];
+
+        setcookie('dishes', json_encode([$specifications]), time() + 3600, '/');
+
+
+        if (isset($_COOKIE['dishes'])) {
+            header('Location: cart.php');
+            exit();
+        }
     }
 
 

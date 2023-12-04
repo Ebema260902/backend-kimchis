@@ -5,17 +5,53 @@
 
     $specifications = [];
     
-    var_dump($_COOKIE);
-// Era por post
-    if(isset($_COOKIE['dishes']) && $_COOKIE['dishes'] !== null) {
-        $data = json_decode($_COOKIE['dishes'], true);
-        $specifications = is_array($data) ? $data : [];
-    }
 
-    $dishPrice = isset($_COOKIE['dish_price']) ? $_COOKIE['dish_price'] : 0;
-    $dishName = isset($_COOKIE['dish_name']) ? $_COOKIE['dish_name'] : '';
-    $amount = isset($_COOKIE['amount']) ? $_COOKIE['amount'] : 0;
-    $totalPrice = isset($_COOKIE['total_price']) ? $_COOKIE['total_price'] : 0;  
+
+    if($_POST){ 
+
+
+        $dish = $database->select("tb_dish",[
+            "[>]tb_categories"=>["id_category" => "id_category"],
+            "[>]tb_number_of_people"=>["id_number_of_people" => "id_number_of_people"]
+        ],[
+            "tb_dish.id_dish",
+            "tb_dish.dish_name",
+            "tb_dish.dish_description",
+            "tb_dish.dish_image",
+            "tb_dish.dish_price",
+            "tb_dish.featured_dish",
+            "tb_categories.id_category",
+            "tb_categories.name_category",
+            "tb_number_of_people.id_number_of_people",
+            "tb_number_of_people.name_group_size"
+        ],[
+            "id_dish"=>$_POST["id_dish"]
+        ]);
+
+
+        $dish_total_cost = ($dish[0]["dish_price"]* $_POST["input"];
+
+        $specifications["id"] = $_POST["id_destination"];
+        $specifications["input"] = $_POST["input"];
+        $specifications["totalPrice"] = $dish_total_cost;
+
+
+
+        // Era por post
+        if(isset($_COOKIE['dishes']) && $_COOKIE['dishes'] !== null) {
+            $data = json_decode($_COOKIE['dishes'], true);
+            // $specifications = is_array($data) ? $data : [];
+            // var_dump($specifications);
+            var_dump("yes");
+        }else{
+            var_dump("no");
+        }
+        
+        //Ver en otro proyecto como los recibo, 
+
+        
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -66,21 +102,28 @@
                 echo "<table>2";
                     echo "<tr class='specifications-for-cart'>";
                         echo "<td class='dish-specification-title'>Dish</td>";
-                        echo "<td class='dish-specification-title'>Date</td>";
                         echo "<td class='dish-specification-title'>Amount</td>";
                         echo "<td class='dish-specification-title'>Price</td>";
+                        echo "<td class='dish-specification-title'>Totalprice</td>";
                     echo "</tr>";                
             
+                        
                     foreach ($specifications as $index=>$specific){
-                        $amount = isset($specific["amount"]) ? $specific["amount"] : 0;
-                            $subtotal_dish = ($specific["amount"] * $specific["price"]);
+                        // var_dump($specific);
+
+                        //$amount = isset($specific["amount"]) ? $specific["amount"] : 0;
+                        //$total_price = isset($specific["price"]) ? $specific["price"] * $amount : 0;
+                        // var_dump($specific["amount"]);
+                        // var_dump($specific["price"]);
+                        // var_dump($total_price);
+
                             $data = $database->select("tb_dish","*",["id_dish" => $specific["id"]]);
                             echo "<tr><td></td></tr>";
                             echo "<tr class='specifications-for-cart'>"
-                                    ."<td >".$data[0]["dish_name"]."</td>"
-                                    ."<td>".$specific["amount"]."</td>"
-                                    ."<td>".$specific["price"]."</td>"
-                                    ."<td> $".$subtotal_dish."</td>"
+                                    ."<td class='dish-specification-title'>".$dish[0]["dish_name"]."</td>"
+                                    ."<td class='dish-specification-title'>".$dish[0]["dish_price"]."</td>"
+                                    ."<td class='dish-specification-title'>".$specification["input"]."</td>"
+                                    ."<td class='dish-specification-title'> $".$dish_total_cost."</td>"
                                 ."</tr>";    
                     }
                     echo "</table>"; 
