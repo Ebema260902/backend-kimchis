@@ -3,6 +3,28 @@
     $message = "";
     $messageLogin = "";
 
+    if (isset($_POST["change_password"])) {
+        $email = $_POST["email"];
+        $current_password = $_POST["current_password"];
+        $new_password = $_POST["new_password"];
+
+        $user = $database->select("tb_users", "*", [
+            "email" => $email
+        ]);
+
+        if (count($user) > 0) {
+            if (password_verify($current_password, $user[0]["pwd"])) {
+                $new_hash_password = password_hash($new_password, PASSWORD_DEFAULT, ['cost' => 12]);
+                $database->update("tb_users", ["pwd" => $new_hash_password], ["email" => $email]);
+                $message = "Password changed successfully!";
+            } else {
+                $message = "Incorrect current password.";
+            }
+        } else {
+            $message = "User not found.";
+        }
+    }
+
     if($_POST){
 
         if(isset($_POST["login"])){
@@ -24,7 +46,6 @@
         }
 
         if(isset($_POST["register"])){
-           
             $validateUsername = $database->select("tb_users","*",[
                 "usr"=>$_POST["username"]
             ]);
@@ -39,8 +60,6 @@
                     "pwd"=> $pass,
                     "email"=> $_POST["email"]
                 ]);
-
-                
             }
         }
     }
@@ -171,6 +190,43 @@
                         </div>
                         <p><?php echo $messageLogin; ?></p>
                         <input type="hidden" name="login" value="1">
+                    </form>
+                </section>
+                
+                <section class='activity'>
+                    <h3 class='activity-title'>Change Password</h3>
+                    <p>Enter your details to change your password.</p>
+                    <form method="post" action="forms.php">
+                        <div class='form-items'>
+                            <div>
+                                <label class='form-label destination-extra' for='email'>Email</label>
+                            </div>
+                            <div>
+                                <input id='email' class='form-input' type='text' name='email'>
+                            </div>
+                        </div>
+                        <div class='form-items'>
+                            <div>
+                                <label class='form-label destination-extra' for='current_password'>Current Password</label>
+                            </div>
+                            <div>
+                                <input id='current_password' class='form-input' type='password' name='current_password'>
+                            </div>
+                        </div>
+                        <div class='form-items'>
+                            <div>
+                                <label class='form-label destination-extra' for='new_password'>New Password</label>
+                            </div>
+                            <div>
+                                <input id='new_password' class='form-input' type='password' name='new_password'>
+                            </div>
+                        </div>
+                        <div class='form-items'>
+                            <div>
+                                <input class='form-input login-btn' type='submit' value="CHANGE">
+                            </div>
+                        </div>
+                        <input type="hidden" name="change_password" value="1">
                     </form>
                 </section>
 
