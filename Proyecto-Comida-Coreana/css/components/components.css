@@ -332,8 +332,8 @@
     color: black;
     text-transform: uppercase;
     position: absolute;
-    top: 5%; /* Ajusta según sea necesario */
-    right: 3%; /* Ajusta según sea necesario */
+    top: 5%; 
+    right: 3%; 
 }
 
 .order-now{
@@ -353,58 +353,6 @@
     left: 9rem;
     top: 2rem;
 }
-
-/* defines color for "english" text */
-.en{
-    color: #ffffff;
-}
-
-/* defines color for "korean" text */
-.co{
-    color: #00a1ff;
-}
-
-/* defines position of the check */
-.check{
-    position: relative;
-    width: 50px;
-    bottom: 5px;
-}
-
-/* Styles for the check before clicked */
-.check:before{
-    content: '';
-    position: absolute;
-    width: 50px;
-    height: 25px;
-    background: #333;
-    border-radius: 25px;
-}
-
-/* Styles for the check after clicked  */
-.check:after{
-    content: '';
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    background: #fff;
-    border-radius: 25px;
-    transition: 0.25;
-    border: 2px solid #333;
-    box-sizing: border-box;
-}
-
-/* Styles for checkbox element when it is checked. */
-.check:checked:after{
-    left: 25px;
-    border: 2px solid #00a1ff;
-}
-
-/* Styles for the checkbox element's background when it is checked.*/
-.check:checked:before{
-    background: #00a1ff;
-}
-
 
 
 /*specifications.php*/

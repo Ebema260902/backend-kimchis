@@ -24,9 +24,6 @@
         ],[
             "id_dish"=>$_GET["id"]
         ]);
-        // $amount = $_GET['amount'];
-        // var_dump($amount);
-
 
         if (!isset($_COOKIE['dishes']))  {
             
@@ -55,13 +52,9 @@
 
             $specifications ["price"] =  $dishPrice;
 
-            
-
-            // $currentDishes = isset($_COOKIE['dishes']) ? json_decode($_COOKIE['dishes'], true) : [];
-
             setcookie('dishes', json_encode($specifications), time() + 3600, '/');
 
-            var_dump($specifications);
+            // var_dump($specifications);
 
 
             if (isset($_COOKIE['dishes'])) {
@@ -73,16 +66,6 @@
         }
         // Reference: https://medoo.in/api/select
     }
-
-
-    // $specifications = [];
-    //     if(isset($_GET["index"])){
-    //             $data = json_decode($_COOKIE['dishes'], true);
-    //             $specifications = $data[$_GET["index"]];
-    //             var_dump($specifications);
-
-    //             $amount = $booking_details["input"];
-    //     }
 ?>
 
 <!DOCTYPE html>
@@ -276,7 +259,7 @@
                 ?>
 
                 <div class="btn-container-confirm">
-                    <!-- <a id="confirmButton" class="btn-confirm-2" href="./cart.php?id=<?php echo $dish[0]["id_dish"]; ?>" style="pointer-events: none;">Confirm</a> -->
+                    <a id="confirmButton" class="btn-confirm-2" href="./cart.php?id=<?php echo $dish[0]["id_dish"]; ?>" style="pointer-events: none;">Confirm</a>
                     <a id="addDishesButton" class="btn-add-dishes" href="./Menu.php?id=<?php echo $dish[0]["id_dish"]; ?>" style="pointer-events: none;">Add more dishes</a> 
                 </div>
 
@@ -307,13 +290,8 @@
             console.log('Input value:', input.value);
             var amount = input.value;
             var dishPrice = <?php echo $dishPrice; ?>;
- 
-            
-            // console.log('Amount:', amount);
-            
 
-            let subtotal = amount * dishPrice;
-            
+            var subtotal = amount * dishPrice;
             
             document.getElementById('amount-subtotal').textContent = '$' + subtotal;
             document.getElementById('confirmation-amount').textContent = amount;
@@ -321,54 +299,19 @@
             var totalPrice = amount * dishPrice;
             document.getElementById('confirmation-total-price').textContent = '$' + totalPrice;
             document.getElementById('confirmation-total-price-last').textContent = '$' + totalPrice;
-
-            
-            
-            // COOKIES
-            // document.cookie = 'amount=' + amount + '; path=/';
-            // document.cookie = 'total_price=' + totalPrice + '; path=/';
             
         }
 
-        // function sendAmountToServer(amount) {
-        //     // Crea un objeto XMLHttpRequest
-        //     var xhr = new XMLHttpRequest();
-
-        //     // Adjunta el valor de amount a la URL
-        //     var url = 'procesar_amount.php?amount=' + amount;
-
-        //     // Especifica el tipo de solicitud, la URL y si la solicitud debe ser asíncrona
-        //     xhr.open('GET', url, true);
-
-        //     // Define la función que se ejecutará cuando la respuesta del servidor esté lista
-        //     xhr.onreadystatechange = function () {
-        //         if (xhr.readyState === 4 && xhr.status === 200) {
-        //             // Manejar la respuesta del servidor si es necesario
-        //             console.log(xhr.responseText);
-                    
-        //         }
-        //     };
-
-        //     // Envía la solicitud
-
-        //     xhr.send();
-        //     alert("Enviado");
-        // }
 
         function next() {
       
             if (!nextButtonClicked) {
                 nextButtonClicked = true;
 
-                // AÑADIDO
-                var amount = document.getElementById('confirmation-amount').textContent;
-                sendAmountToServer(amount);
+                // var amount = document.getElementById('confirmation-amount').textContent;
                 
-
                 document.getElementById('confirmButton').style.pointerEvents = 'auto';
                 document.getElementById('addDishesButton').style.pointerEvents = 'auto';
-
-                // document.getElementById('mainContainer').classList.add('disabled-container');
 
                 document.getElementById('containerIllustrative').style.display = 'block';
             }

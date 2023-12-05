@@ -15,7 +15,6 @@
         ]);
 
         header("Location: list-dishes.php");
-        
      }
 ?>
 

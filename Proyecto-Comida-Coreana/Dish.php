@@ -89,10 +89,6 @@
         "tb_dish.id_dish[!]" => $_GET["id"],
     ]);
 
-    // var_dump($currentCategory);
-    
-
-   
 ?>
 
 <!DOCTYPE html>
@@ -118,12 +114,7 @@
                     <a class="logo-image" href="./Homepage.php"><img src="./imgs/imgsproyect/Logo Kimchis 1imgs2.png" alt="kimchis logo"></a>
                 </div>
                 <a class="name-kimchis" href="./Homepage.php">KIMCHIS</a>
-                <!-- <section class="checkbox-container">
-                    <span class="en">English</span>
-                    <input type="checkbox" class="check">
-                    <span class="co">Korean</span>
-                    <script src="js/01.js"></script>
-                </section>   -->
+               
             </nav>
         
             
@@ -208,7 +199,6 @@
         <div class='dishes-container-related'>
 
         <?php 
-            // Verify if there are at least 4 elements in $relatedDishes
             $relatedDishesCount = count($relatedDishes);
             $numberContainers = 4;
 

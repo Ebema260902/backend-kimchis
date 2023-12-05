@@ -3,41 +3,10 @@
     
     include('simple_html_dom.php');
     /*
-    LIBANO
-    https://www.allrecipes.com/recipes/1824/world-cuisine/middle-eastern/lebanese/
-
-    ALEMANIA
-    https://www.allrecipes.com/recipes/722/world-cuisine/european/german/
-
-    INDIA
-    https://www.allrecipes.com/recipes/17136/world-cuisine/asian/indian/main-dishes/
-    https://www.allrecipes.com/recipes/15935/world-cuisine/asian/indian/drinks/
-
-    MEXICO
-    https://www.allrecipes.com/recipes/728/world-cuisine/latin-american/mexican/
-    https://www.allrecipes.com/recipes/15936/world-cuisine/latin-american/mexican/drinks/
-
-    JAPON
-    https://www.allrecipes.com/recipes/699/world-cuisine/asian/japanese/
-
-    CHINA
-    https://www.allrecipes.com/recipes/695/world-cuisine/asian/chinese/
 
     COREA
     https://www.allrecipes.com/recipes/700/world-cuisine/asian/korean/
 
-    ITALIA
-    https://www.allrecipes.com/recipes/1789/world-cuisine/european/italian/authentic/
-    https://www.allrecipes.com/recipes/17551/world-cuisine/european/italian/drinks/
-
-    FRANCIA
-    https://www.allrecipes.com/recipes/721/world-cuisine/european/french/
-
-    ESPAÑA
-    https://www.allrecipes.com/recipes/726/world-cuisine/european/spanish/
-
-    NORDICA
-    https://www.allrecipes.com/recipes/1892/world-cuisine/european/scandinavian/danish/
 
     GENERIC DRINKS 
     https://www.allrecipes.com/recipes/77/drinks/
@@ -55,10 +24,7 @@
     $menu_items = 10;
 
     $items = file_get_html($link);
-
-    // var_dump($items);
-
-    //save meals info and filenames for the images
+   
     foreach ($items->find('.card--no-image') as $item){
         
         $title = $item->find('.card__title-text');

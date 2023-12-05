@@ -1,30 +1,20 @@
 <?php 
-    /***
-     * 0. include database connection file
-     * 1. receive form values from post and insert them into the table (match table field with values from name atributte)
-     * 2. for the destination_image insert the value "destination-placeholder.webp"
-     * 3. redirect to destinations-list. php after complete the insert into
-     */
+    
+    require_once '../../database.php';
 
-     require_once '../../database.php';
+    $categories = $database->select("tb_categories","*");
+    $number_of_people = $database->select("tb_number_of_people", "*");   
 
-     
-     // Reference: https://medoo.in/api/select
-     $categories = $database->select("tb_categories","*");
-     $number_of_people = $database->select("tb_number_of_people", "*");
-     
-     
+    $message = "";
 
-     $message = "";
-
-     if($_GET){
+    if($_GET){
         $dish = $database->select("tb_dish","*",[
             "id_dish" => $_GET["id"],
         ]);
          var_dump($dish);   
-     }
+    }
 
-     if($_POST){
+    if($_POST){
 
         $data = $database->select("tb_dish","*",[
             "id_dish"=>$_POST["id"]
@@ -74,11 +64,10 @@
             "id_dish" => $_POST["id"]
         ]);
         
-        header("location: list-dishes.php");
-             
-     }
-
+        header("location: list-dishes.php");            
+    }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

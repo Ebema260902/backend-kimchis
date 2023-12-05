@@ -1,15 +1,10 @@
 
-
 <?php 
     require_once '../database.php';
 
     $specifications = [];
-    
-
 
     if($_POST){ 
-
-
         $dish = $database->select("tb_dish",[
             "[>]tb_categories"=>["id_category" => "id_category"],
             "[>]tb_number_of_people"=>["id_number_of_people" => "id_number_of_people"]
@@ -27,27 +22,6 @@
         ],[
             "id_dish"=>$_POST["id_dish"]
         ]);
-
-
-        
-
-        // $specifications["id"] = $_POST["id_destination"];
-        // $specifications["input"] = $_POST["input"];
-        // $specifications["totalPrice"] = $dish_total_cost;
-
-
-
-        // // Era por post
-        // if(isset($_COOKIE['dishes']) && $_COOKIE['dishes'] !== null) {
-        //     $data = json_decode($_COOKIE['dishes'], true);
-            
-        //     var_dump("yes");
-        // }else{
-        //     var_dump("no");
-        // }
-        
-        //Ver en otro proyecto como los recibo, 
-
         
     }
     
@@ -90,9 +64,6 @@
         
         <section class="dishes-container-cart">
             
-    
-           
-           
         <?php 
             $data = json_decode($_COOKIE['dishes'], true);
         
@@ -112,13 +83,6 @@
             
                         
                     foreach ($specifications as $index=>$specific){
-                        // var_dump($specific);
-
-                        //$amount = isset($specific["amount"]) ? $specific["amount"] : 0;
-                        //$total_price = isset($specific["price"]) ? $specific["price"] * $amount : 0;
-                        // var_dump($specific["amount"]);
-                        // var_dump($specific["price"]);
-                        // var_dump($total_price);
 
                             $data = $database->select("tb_dish","*",["id_dish" => $specification["id"]]);
                             $dish_total_cost = ($specifications["confirmation-amount"] * $dish[0]["dish_price"]);
@@ -136,9 +100,6 @@
 
                 }
                 ?>
-                
-           
-
 
             <div>
                 <div><a class="btn-finish" href='cart.php'>Finish order</a></div>
