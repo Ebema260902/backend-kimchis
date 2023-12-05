@@ -216,6 +216,7 @@
                             echo "</section>";
 
                             // LINE DIV
+                            
                             echo "<div>";
                                 echo "<img class='line-div' src='../Proyecto-Comida-Coreana/imgs/imgsproyect/line-div.png' alt=''>";
                             echo "</div>";
