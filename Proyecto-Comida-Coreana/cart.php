@@ -20,7 +20,7 @@
             "tb_number_of_people.id_number_of_people",
             "tb_number_of_people.name_group_size"
         ],[
-            "id_dish"=>$_POST["id_dish"]
+            "id_dish"=>$_POST["id-dish"]
         ]);
         
     }
@@ -68,6 +68,7 @@
             $data = json_decode($_COOKIE['dishes'], true);
         
             $specifications = $data;
+            var_dump($specifications);
         ?>
 
            <?php
@@ -81,17 +82,18 @@
                         echo "<td class='dish-specification-title'>Totalprice</td>";
                     echo "</tr>";                
             
-                        
+                    
                     foreach ($specifications as $index=>$specific){
 
-                            $data = $database->select("tb_dish","*",["id_dish" => $specification["id"]]);
-                            $dish_total_cost = ($specifications["confirmation-amount"] * $dish[0]["dish_price"]);
+                            // $data = $database->select("tb_dish","*",["id_dish" => $specific["id-dish"]]);
+                            // var_dump($specific);
+                            // $dish_total_cost = ($specifications["confirmation-amount"] * $dish[0]["dish_price"]);
                             echo "<tr><td></td></tr>";
                             echo "<tr class='specifications-for-cart'>"
-                                    ."<td class='dish-specification-title'>".$dish[0]["dish_name"]."</td>"
-                                    ."<td class='dish-specification-title'>".$dish[0]["dish_price"]."</td>"
-                                    ."<td class='dish-specification-title'>".$dish[0]["dish_price"]."</td>"
-                                    ."<td class='dish-specification-title'> $".$dish[0]["dish_price"]."</td>"
+                                    ."<td class='dish-specification-title'>".$specific["dish_name"]."</td>"
+                                    ."<td class='dish-specification-title'>".$specific["dish_price"]."</td>"
+                                    ."<td class='dish-specification-title'>".$specific["dish_price"]."</td>"
+                                    ."<td class='dish-specification-title'> $".$specific["dish_price"]."</td>"
                                 ."</tr>";    
                     }
                     echo "</table>"; 

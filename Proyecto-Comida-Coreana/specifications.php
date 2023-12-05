@@ -48,9 +48,12 @@
             $dishPrice = $dish[0]['dish_price'];
             $dishName = $dish[0]['dish_name']; 
 
-            $specifications = [];
+            $specifications = [
+                $dish[0]['dish_name'],
+                $dish[0]['dish_price']
+            ];
 
-            $specifications ["price"] =  $dishPrice;
+            // $specifications ["price"] =  $dishPrice;
 
             setcookie('dishes', json_encode($specifications), time() + 3600, '/');
 
