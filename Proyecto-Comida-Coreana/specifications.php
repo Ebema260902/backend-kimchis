@@ -28,7 +28,7 @@
         // var_dump($amount);
 
 
-        if ($_GET && !isset($_COOKIE['dishes']))  {
+        if (!isset($_COOKIE['dishes']))  {
             
             $dish = $database->select("tb_dish",[
                 "[>]tb_categories"=>["id_category" => "id_category"],
@@ -48,30 +48,26 @@
                 "id_dish"=>$_GET["id"]
             ]);
      
- 
             $dishPrice = $dish[0]['dish_price'];
             $dishName = $dish[0]['dish_name']; 
 
-            //  $dishAmount = "100";
-            //  $dishTotalPrice = "";
+            $specifications = [];
 
-            // var_dump($dishAmount);
-            //Hacer array de dishInfos para pasar información que viene del array dish, que es la que trae informacion de la base de datos 
-            // $dishInfo = [
-            //     "id" => $dish[0]["id_dish"],
-            //     "name" => $dish[0]["dish_name"],
-            //     "price" => $dish[0]["dish_price"],
-            //     "amount" => "200",
-            //     "totalPrice"=> "perro"  
-            // ];
+            $specifications ["price"] =  $dishPrice;
 
-            $currentDishes = isset($_COOKIE['dishes']) ? json_decode($_COOKIE['dishes'], true) : [];
+            
 
-            setcookie('dishes', json_encode([$specifications]), time() + 3600, '/');
+            // $currentDishes = isset($_COOKIE['dishes']) ? json_decode($_COOKIE['dishes'], true) : [];
+
+            setcookie('dishes', json_encode($specifications), time() + 3600, '/');
+
+            var_dump($specifications);
 
 
             if (isset($_COOKIE['dishes'])) {
                 header('Location: cart.php');
+
+                
                 exit();
             }
         }
@@ -79,14 +75,14 @@
     }
 
 
-    $specifications = [];
-        if(isset($_GET["index"])){
-                $data = json_decode($_COOKIE['dishes'], true);
-                $specifications = $data[$_GET["index"]];
-                var_dump($specifications);
+    // $specifications = [];
+    //     if(isset($_GET["index"])){
+    //             $data = json_decode($_COOKIE['dishes'], true);
+    //             $specifications = $data[$_GET["index"]];
+    //             var_dump($specifications);
 
-                $amount = $booking_details["input"];
-        }
+    //             $amount = $booking_details["input"];
+    //     }
 ?>
 
 <!DOCTYPE html>
@@ -192,14 +188,14 @@
                         </div>
 
                         <?php 
-                            echo "<form action='cart.php' method='post'>";
+                            echo "<section>";
 
                                 echo "<div class='order-items-specifications'>";
                                     echo "<div>";
-                                        echo "<label class='label-amount' step='1' for='input'>Amount</label>";
+                                        echo "<label class='label-amount' step='1' for='order'>Amount</label>";
                                     echo "</div>";
                                     echo "<div>";
-                                        echo "<input id='input' class='input-amount' name='order' type='number' oninput='updateSubtotal(this)' step='1' value='0' min='0' max='50'>";
+                                        echo "<input id='order' class='input-amount' name='order' type='number' oninput='updateSubtotal(this)' step='1' value='0' min='0' max='50'>";
                                         
                                         echo "</div>";
                                     echo "<div>";
@@ -236,7 +232,7 @@
 
 
                         <div class="btn-container">
-                            <a id="nextButton" class="btn-add-to-cart" href="#" onclick="next()">Next</a>
+                            <button id="nextButton" class="btn-add-to-cart" onclick="next()">Next</button>
                         </div>
 
                     </div>
@@ -279,7 +275,7 @@
                 ?>
 
                 <div class="btn-container-confirm">
-                    <a id="confirmButton" class="btn-confirm-2" href="./cart.php?id=<?php echo $dish[0]["id_dish"]; ?>" style="pointer-events: none;">Confirm</a>
+                    <!-- <a id="confirmButton" class="btn-confirm-2" href="./cart.php?id=<?php echo $dish[0]["id_dish"]; ?>" style="pointer-events: none;">Confirm</a> -->
                     <a id="addDishesButton" class="btn-add-dishes" href="./Menu.php?id=<?php echo $dish[0]["id_dish"]; ?>" style="pointer-events: none;">Add more dishes</a> 
                 </div>
 
@@ -310,19 +306,12 @@
             console.log('Input value:', input.value);
             var amount = input.value;
             var dishPrice = <?php echo $dishPrice; ?>;
-
-            <?php 
+ 
             
-            echo $dishAmount = amount; 
-            
-            ?>;
             // console.log('Amount:', amount);
             
 
-            var subtotal = amount * dishPrice;
-            
-            
-
+            let subtotal = amount * dishPrice;
             
             
             document.getElementById('amount-subtotal').textContent = '$' + subtotal;
@@ -335,35 +324,35 @@
             
             
             // COOKIES
-            document.cookie = 'amount=' + amount + '; path=/';
-            document.cookie = 'total_price=' + totalPrice + '; path=/';
+            // document.cookie = 'amount=' + amount + '; path=/';
+            // document.cookie = 'total_price=' + totalPrice + '; path=/';
             
         }
 
-        function sendAmountToServer(amount) {
-            // Crea un objeto XMLHttpRequest
-            var xhr = new XMLHttpRequest();
+        // function sendAmountToServer(amount) {
+        //     // Crea un objeto XMLHttpRequest
+        //     var xhr = new XMLHttpRequest();
 
-            // Adjunta el valor de amount a la URL
-            var url = 'procesar_amount.php?amount=' + amount;
+        //     // Adjunta el valor de amount a la URL
+        //     var url = 'procesar_amount.php?amount=' + amount;
 
-            // Especifica el tipo de solicitud, la URL y si la solicitud debe ser asíncrona
-            xhr.open('GET', url, true);
+        //     // Especifica el tipo de solicitud, la URL y si la solicitud debe ser asíncrona
+        //     xhr.open('GET', url, true);
 
-            // Define la función que se ejecutará cuando la respuesta del servidor esté lista
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    // Manejar la respuesta del servidor si es necesario
-                    console.log(xhr.responseText);
+        //     // Define la función que se ejecutará cuando la respuesta del servidor esté lista
+        //     xhr.onreadystatechange = function () {
+        //         if (xhr.readyState === 4 && xhr.status === 200) {
+        //             // Manejar la respuesta del servidor si es necesario
+        //             console.log(xhr.responseText);
                     
-                }
-            };
+        //         }
+        //     };
 
-            // Envía la solicitud
+        //     // Envía la solicitud
 
-            xhr.send();
-            alert("Enviado");
-        }
+        //     xhr.send();
+        //     alert("Enviado");
+        // }
 
         function next() {
       

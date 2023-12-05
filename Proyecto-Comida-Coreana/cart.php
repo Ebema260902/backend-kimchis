@@ -29,23 +29,22 @@
         ]);
 
 
-        $dish_total_cost = ($dish[0]["dish_price"]* $_POST["input"];
+        
 
-        $specifications["id"] = $_POST["id_destination"];
-        $specifications["input"] = $_POST["input"];
-        $specifications["totalPrice"] = $dish_total_cost;
+        // $specifications["id"] = $_POST["id_destination"];
+        // $specifications["input"] = $_POST["input"];
+        // $specifications["totalPrice"] = $dish_total_cost;
 
 
 
-        // Era por post
-        if(isset($_COOKIE['dishes']) && $_COOKIE['dishes'] !== null) {
-            $data = json_decode($_COOKIE['dishes'], true);
-            // $specifications = is_array($data) ? $data : [];
-            // var_dump($specifications);
-            var_dump("yes");
-        }else{
-            var_dump("no");
-        }
+        // // Era por post
+        // if(isset($_COOKIE['dishes']) && $_COOKIE['dishes'] !== null) {
+        //     $data = json_decode($_COOKIE['dishes'], true);
+            
+        //     var_dump("yes");
+        // }else{
+        //     var_dump("no");
+        // }
         
         //Ver en otro proyecto como los recibo, 
 
@@ -94,7 +93,11 @@
     
            
            
-
+        <?php 
+            $data = json_decode($_COOKIE['dishes'], true);
+        
+            $specifications = $data;
+        ?>
 
            <?php
         //    var_dump($specifications);
@@ -117,13 +120,14 @@
                         // var_dump($specific["price"]);
                         // var_dump($total_price);
 
-                            $data = $database->select("tb_dish","*",["id_dish" => $specific["id"]]);
+                            $data = $database->select("tb_dish","*",["id_dish" => $specification["id"]]);
+                            $dish_total_cost = ($specifications["confirmation-amount"] * $dish[0]["dish_price"]);
                             echo "<tr><td></td></tr>";
                             echo "<tr class='specifications-for-cart'>"
                                     ."<td class='dish-specification-title'>".$dish[0]["dish_name"]."</td>"
                                     ."<td class='dish-specification-title'>".$dish[0]["dish_price"]."</td>"
-                                    ."<td class='dish-specification-title'>".$specification["input"]."</td>"
-                                    ."<td class='dish-specification-title'> $".$dish_total_cost."</td>"
+                                    ."<td class='dish-specification-title'>".$dish[0]["dish_price"]."</td>"
+                                    ."<td class='dish-specification-title'> $".$dish[0]["dish_price"]."</td>"
                                 ."</tr>";    
                     }
                     echo "</table>"; 
