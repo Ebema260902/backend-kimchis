@@ -31,11 +31,13 @@
             $user = $database->select("tb_users","*",[
                 "usr"=>$_POST["username"]
             ]);
+            
             if(count($user) > 0){
                 if(password_verify($_POST["password"], $user[0]["pwd"])){
                     session_start();
                     $_SESSION["isLoggedIn"] = true;
                     $_SESSION["fullname"] = $user[0]["fullname"];
+                    $_SESSION["admin"] = $user[0]["admin"];
                     header("location: forms.php");
                 }else{
                     $messageLogin = "wrong username or password";
@@ -71,7 +73,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camping Website</title>
+    <title>Login</title>
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,11 +85,13 @@
         <header>
             <nav class="top-nav">
 
-                <a class="logo" href="./Homepage.html"><img src="./imgs/imgsMenu/Logo Kimchis 1imgs2.png" alt="Kimchis logo"><span>KIMCHIS</span> </a>
+                <a class="logo" href="./Homepage.php"><img src="./imgs/imgsMenu/Logo Kimchis 1imgs2.png" alt="Kimchis logo"><span>KIMCHIS</span> </a>
 
                 <ul class="nav-list">
                     <li><a class="nav-list-link" href="./Homepage.php">Homepage</a></li>
-                    <li><a class="nav-list-link" href="#">Reservations</a></li>
+                    <li><a class="nav-list-link" href="./Menu.php">Menu</a></li>
+                    <li><a class="nav-list-link" href="./admin">Administrator</a></li>
+                    <li><a class="nav-list-link" href="./search.php">Search</a></li>
                     <?php 
                                 session_start();
                                 if(isset($_SESSION["isLoggedIn"])){
@@ -199,7 +203,7 @@
                     <form method="post" action="forms.php">
                         <div class='form-items'>
                             <div>
-                                <label class='form-label destination-extra' for='email'>Email</label>
+                                <label class='form-label destination-extra' for='email'>Email Address</label>
                             </div>
                             <div>
                                 <input id='email' class='form-input' type='text' name='email'>

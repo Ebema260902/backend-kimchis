@@ -5,7 +5,21 @@
     $categories = $database->select("tb_categories","*");
     $number_of_people = $database->select("tb_number_of_people", "*");   
 
-    $message = "";
+     $message = "";
+
+     session_start();
+
+
+     if (!isset($_SESSION["isLoggedIn"])) {
+        header("Location: ../forms.php"); 
+        exit();
+     }
+
+
+     if (!isset($_SESSION["admin"]) || $_SESSION["admin"] !== 1) {
+        header("Location: ../Homepage.php"); 
+        exit();
+     }
 
     if($_GET){
         $dish = $database->select("tb_dish","*",[

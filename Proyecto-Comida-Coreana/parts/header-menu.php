@@ -1,11 +1,12 @@
 <header>
     <nav class="top-nav">
 
-        <a class="logo" href="./Homepage.html"><img src="./imgs/imgsMenu/Logo Kimchis 1imgs2.png" alt="Kimchis logo"><span>KIMCHIS</span> </a>
+        <a class="logo" href="./Homepage.php"><img src="./imgs/imgsMenu/Logo Kimchis 1imgs2.png" alt="Kimchis logo"><span>KIMCHIS</span> </a>
 
         <ul class="nav-list">
             <li><a class="nav-list-link" href="./Homepage.php">Homepage</a></li>
-            <li><a class="nav-list-link" href="#">Reservations</a></li>
+            <li><a class="nav-list-link" href="./admin">Administrator</a></li>
+            <li><a class="nav-list-link" href="./search.php">Search</a></li>
             <?php 
                         session_start();
                         if(isset($_SESSION["isLoggedIn"])){
@@ -15,6 +16,7 @@
                             echo "<li><a class='nav-list-link' href='./forms.php'>Login</a></li>";
                         }
                      ?>
+            
         </ul>
 
     </nav>
