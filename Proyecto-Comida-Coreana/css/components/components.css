@@ -135,7 +135,8 @@
 
 /* Cart and info buttons with background images and specific positioning. */
 .btn-cart,
-.btn-info {
+.btn-info,
+.btn-info-homepage {
     display: flex;
     width: 10px;
     height: auto;
@@ -172,6 +173,16 @@
     background-size: cover;
 }
 
+.btn-info-homepage{
+    margin: auto;
+    padding: 1.1rem 2rem;
+    position: relative;
+    right: 0px;
+    bottom: 2.2rem;
+    z-index: 2;
+    background-image: url('../../imgs/imgsproyect/image-!.png'); 
+    background-size: cover;
+}
 
 /* Icon with maximum size and specific right margin. */
 .icon-img {
