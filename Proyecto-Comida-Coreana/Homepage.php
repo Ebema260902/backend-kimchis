@@ -51,7 +51,7 @@
                 
                 <ul class="nav-list">
                     <li><a class="nav-list-link" href="./Menu.php">Menu</a></li>
-                    <li><a class="nav-list-link" href="./Menu.php">Reservations</a></li>
+                    
                     <?php 
                         session_start();
                         if(isset($_SESSION["isLoggedIn"])){
@@ -63,10 +63,7 @@
                      ?>
                 </ul>
 
-                <!-- <ul class="nav-list-login-btn">
-                    <li><a class="btn-login nav-list-link" href="#">Login</a></li>
-                    <li><a class="btn-sign-up nav-list-link" href="#">Sign Up</a></li>
-                </ul> -->
+                
             </nav>
             
             <Section>
@@ -76,7 +73,7 @@
                 </div>
 
                 <div class="btn-container">
-                    <a class="btn-get-started-homepage" href="#">GET STARTED</a>
+                    <a class="btn-get-started-homepage" href="./forms.php">GET STARTED</a>
                 </div>
                 <div>
                     <img class="image-header-homepage" src="./imgs/imgsproyect/image-main33.jpg" alt="Image-Header-Homepage">
@@ -113,8 +110,8 @@
                                 echo "</div>";
                                 echo "<p class='dish-text-php'>".substr($dish["dish_description"], 0, 90)."...</p>";
                                 echo "<div>";
-                                    echo "<a class='btn-cart' href='#'></a>";
-                                    echo "<a class='btn-info' href='./Dish.php?id=".$dish["id_dish"]."'></a>";
+                                    // echo "<a class='btn-cart' href='#'></a>";
+                                    echo "<a class='btn-info-homepage' href='./Dish.php?id=".$dish["id_dish"]."'></a>";
                                 echo "</div>";
                             echo "</section>";          
                     }else{
@@ -125,9 +122,6 @@
                 }
 
                 ?>
-
-                
-
         </main>
 
         <?php 

@@ -1,8 +1,6 @@
 
 <?php
     require_once '../database.php';
-
-    $amount = 1;
     
 
     if($_GET){
@@ -27,12 +25,8 @@
             "id_dish"=>$_GET["id"]
         ]);
 
-
-
-        
-
-        if ($_GET && !isset($_COOKIE['dishes']))  {
-
+        if (!isset($_COOKIE['dishes']))  {
+            
             $dish = $database->select("tb_dish",[
                 "[>]tb_categories"=>["id_category" => "id_category"],
                 "[>]tb_number_of_people"=>["id_number_of_people" => "id_number_of_people"]
@@ -51,37 +45,26 @@
                 "id_dish"=>$_GET["id"]
             ]);
      
-        
             $dishPrice = $dish[0]['dish_price'];
             $dishName = $dish[0]['dish_name']; 
-             
 
-            $dishInfo = [
-                "id" => $dish[0]["id_dish"],
-                "name" => $dish[0]["dish_name"],
-                "price" => $dish[0]["dish_price"],
-            ];
-            $currentDishes = isset($_COOKIE['dishes']) ? json_decode($_COOKIE['dishes'], true) : [];
+            $specifications = [];
 
-            $currentDishes[] = $dishInfo;
+            $specifications ["price"] =  $dishPrice;
 
-            setcookie('dishes', json_encode([$dishInfo]), time() + 3600, '/');
+            setcookie('dishes', json_encode($specifications), time() + 3600, '/');
 
-            setcookie('dish_price', $dishPrice, time() + 3600, '/');
-            setcookie('dish_name', $dishName, time() + 3600, '/');
-            setcookie('amount', 0, time() + 3600, '/');
-            setcookie('total_price', 0, time() + 3600, '/');
+            // var_dump($specifications);
 
 
             if (isset($_COOKIE['dishes'])) {
                 header('Location: cart.php');
+
+                
                 exit();
             }
         }
- 
-
         // Reference: https://medoo.in/api/select
-    
     }
 ?>
 
@@ -195,8 +178,9 @@
                                         echo "<label class='label-amount' step='1' for='order'>Amount</label>";
                                     echo "</div>";
                                     echo "<div>";
-                                        echo "<input class='input-amount' name='order' type='number' oninput='updateSubtotal(this)' step='1' value='0' min='0' max='50'>";
-                                    echo "</div>";
+                                        echo "<input id='order' class='input-amount' name='order' type='number' oninput='updateSubtotal(this)' step='1' value='0' min='0' max='50'>";
+                                        
+                                        echo "</div>";
                                     echo "<div>";
                                         echo "<p type='number' id='amount-subtotal' value='0' min='0' max='50'>$0</p>";  
                                     echo "</div>";
@@ -215,6 +199,7 @@
                             echo "</section>";
 
                             // LINE DIV
+                            
                             echo "<div>";
                                 echo "<img class='line-div' src='../Proyecto-Comida-Coreana/imgs/imgsproyect/line-div.png' alt=''>";
                             echo "</div>";
@@ -227,11 +212,11 @@
                                 echo "</div>";
                             echo "</section>";
                             
-                        ?>
+                   ?>
 
 
                         <div class="btn-container">
-                            <a id="nextButton" class="btn-add-to-cart" href="#" onclick="next()">Next</a>
+                            <button id="nextButton" class="btn-add-to-cart" onclick="next()">Next</button>
                         </div>
 
                     </div>
@@ -305,37 +290,33 @@
             console.log('Input value:', input.value);
             var amount = input.value;
             var dishPrice = <?php echo $dishPrice; ?>;
-            var subtotal = amount * dishPrice;
 
+            var subtotal = amount * dishPrice;
+            
             document.getElementById('amount-subtotal').textContent = '$' + subtotal;
             document.getElementById('confirmation-amount').textContent = amount;
 
             var totalPrice = amount * dishPrice;
             document.getElementById('confirmation-total-price').textContent = '$' + totalPrice;
             document.getElementById('confirmation-total-price-last').textContent = '$' + totalPrice;
-
-            // COOKIES
-            document.cookie = 'amount=' + amount + '; path=/';
-            document.cookie = 'total_price=' + totalPrice + '; path=/';
             
         }
 
+
         function next() {
       
-        if (!nextButtonClicked) {
-            nextButtonClicked = true;
+            if (!nextButtonClicked) {
+                nextButtonClicked = true;
 
-          
-            document.getElementById('confirmButton').style.pointerEvents = 'auto';
-            document.getElementById('addDishesButton').style.pointerEvents = 'auto';
+                // var amount = document.getElementById('confirmation-amount').textContent;
+                
+                document.getElementById('confirmButton').style.pointerEvents = 'auto';
+                document.getElementById('addDishesButton').style.pointerEvents = 'auto';
 
-            // document.getElementById('mainContainer').classList.add('disabled-container');
-
-            document.getElementById('containerIllustrative').style.display = 'block';
+                document.getElementById('containerIllustrative').style.display = 'block';
+            }
+    
         }
-
-        
-    }
 
     </script>
 

@@ -35,11 +35,8 @@
             "dish_description"=>$_POST["dish_description"],
             "dish_description_ko"=>$_POST["dish_description_ko"],
             "dish_image"=> "dish-placeholder.jpg",
-            "dish_price"=>$_POST["dish_price"]
-
-            
-        ]);       
-        
+            "dish_price"=>$_POST["dish_price"]  
+        ]);        
      }
      var_dump($_POST["featured_dish"]);
 

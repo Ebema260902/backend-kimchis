@@ -2,10 +2,7 @@
     require_once '../database.php';
     // Reference: https://medoo.in/api/select
     // tb_dishes and tb_categories JOIN
-    
 
-
-    
     if($_GET){
         $dish = $database->select("tb_dish", [
             "[>]tb_categories" => ["id_category" => "id_category"],
@@ -86,15 +83,8 @@
                     <a class="logo-image" href="./Homepage.php"><img src="./imgs/imgsproyect/Logo Kimchis 1imgs2.png" alt="kimchis logo"></a>
                 </div>
                 <a class="name-kimchis" href="./Homepage.php">KIMCHIS</a>
-                <!-- <section class="checkbox-container">
-                    <span class="en">English</span>
-                    <input type="checkbox" class="check">
-                    <span class="co">Korean</span>
-                    <script src="js/01.js"></script>
-                </section>   -->
             </nav>
-        
-            
+               
             <header class="hero-container-dish">
 
             <div class="dish-container">
@@ -174,7 +164,6 @@
         <div class='dishes-container-related'>
 
         <?php 
-            // Verify if there are at least 4 elements in $relatedDishes
             $relatedDishesCount = count($relatedDishes);
             $numberContainers = 4;
 

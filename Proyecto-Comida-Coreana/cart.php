@@ -1,21 +1,30 @@
 
-
 <?php 
     require_once '../database.php';
 
     $specifications = [];
-    
-    var_dump($_COOKIE);
-// Era por post
-    if(isset($_COOKIE['dishes']) && $_COOKIE['dishes'] !== null) {
-        $data = json_decode($_COOKIE['dishes'], true);
-        $specifications = is_array($data) ? $data : [];
-    }
 
-    $dishPrice = isset($_COOKIE['dish_price']) ? $_COOKIE['dish_price'] : 0;
-    $dishName = isset($_COOKIE['dish_name']) ? $_COOKIE['dish_name'] : '';
-    $amount = isset($_COOKIE['amount']) ? $_COOKIE['amount'] : 0;
-    $totalPrice = isset($_COOKIE['total_price']) ? $_COOKIE['total_price'] : 0;  
+    if($_POST){ 
+        $dish = $database->select("tb_dish",[
+            "[>]tb_categories"=>["id_category" => "id_category"],
+            "[>]tb_number_of_people"=>["id_number_of_people" => "id_number_of_people"]
+        ],[
+            "tb_dish.id_dish",
+            "tb_dish.dish_name",
+            "tb_dish.dish_description",
+            "tb_dish.dish_image",
+            "tb_dish.dish_price",
+            "tb_dish.featured_dish",
+            "tb_categories.id_category",
+            "tb_categories.name_category",
+            "tb_number_of_people.id_number_of_people",
+            "tb_number_of_people.name_group_size"
+        ],[
+            "id_dish"=>$_POST["id_dish"]
+        ]);
+        
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -55,10 +64,11 @@
         
         <section class="dishes-container-cart">
             
-    
-           
-           
-
+        <?php 
+            $data = json_decode($_COOKIE['dishes'], true);
+        
+            $specifications = $data;
+        ?>
 
            <?php
         //    var_dump($specifications);
@@ -66,21 +76,22 @@
                 echo "<table>2";
                     echo "<tr class='specifications-for-cart'>";
                         echo "<td class='dish-specification-title'>Dish</td>";
-                        echo "<td class='dish-specification-title'>Date</td>";
                         echo "<td class='dish-specification-title'>Amount</td>";
                         echo "<td class='dish-specification-title'>Price</td>";
+                        echo "<td class='dish-specification-title'>Totalprice</td>";
                     echo "</tr>";                
             
+                        
                     foreach ($specifications as $index=>$specific){
-                        $amount = isset($specific["amount"]) ? $specific["amount"] : 0;
-                            $subtotal_dish = ($specific["amount"] * $specific["price"]);
-                            $data = $database->select("tb_dish","*",["id_dish" => $specific["id"]]);
+
+                            $data = $database->select("tb_dish","*",["id_dish" => $specification["id"]]);
+                            $dish_total_cost = ($specifications["confirmation-amount"] * $dish[0]["dish_price"]);
                             echo "<tr><td></td></tr>";
                             echo "<tr class='specifications-for-cart'>"
-                                    ."<td >".$data[0]["dish_name"]."</td>"
-                                    ."<td>".$specific["amount"]."</td>"
-                                    ."<td>".$specific["price"]."</td>"
-                                    ."<td> $".$subtotal_dish."</td>"
+                                    ."<td class='dish-specification-title'>".$dish[0]["dish_name"]."</td>"
+                                    ."<td class='dish-specification-title'>".$dish[0]["dish_price"]."</td>"
+                                    ."<td class='dish-specification-title'>".$dish[0]["dish_price"]."</td>"
+                                    ."<td class='dish-specification-title'> $".$dish[0]["dish_price"]."</td>"
                                 ."</tr>";    
                     }
                     echo "</table>"; 
@@ -89,9 +100,6 @@
 
                 }
                 ?>
-                
-           
-
 
             <div>
                 <div><a class="btn-finish" href='cart.php'>Finish order</a></div>
