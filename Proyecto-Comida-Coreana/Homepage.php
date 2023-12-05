@@ -63,9 +63,7 @@
                             echo "<li><a class='nav-list-link' href='./forms.php'>Login</a></li>";
                         }
                      ?>
-                </ul>
-
-                
+                </ul>  
             </nav>
             
             <Section>
