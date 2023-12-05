@@ -5,10 +5,23 @@
      
      // Reference: https://medoo.in/api/select
      $categories = $database->select("tb_categories","*");
-     $number_of_people = $database->select("tb_number_of_people","*");
-     
+     $number_of_people = $database->select("tb_number_of_people","*"); 
 
-     
+
+     session_start();
+
+
+     if (!isset($_SESSION["isLoggedIn"])) {
+        header("Location: ../forms.php"); 
+        exit();
+     }
+
+
+     if (!isset($_SESSION["admin"]) || $_SESSION["admin"] !== 1) {
+        header("Location: ../Homepage.php"); 
+        exit();
+     }
+
 
      if($_POST){
         // var_dump($_POST);

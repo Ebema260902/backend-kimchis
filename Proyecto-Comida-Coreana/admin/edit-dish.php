@@ -17,6 +17,20 @@
 
      $message = "";
 
+     session_start();
+
+
+     if (!isset($_SESSION["isLoggedIn"])) {
+        header("Location: ../forms.php"); 
+        exit();
+     }
+
+
+     if (!isset($_SESSION["admin"]) || $_SESSION["admin"] !== 1) {
+        header("Location: ../Homepage.php"); 
+        exit();
+     }
+
      if($_GET){
         $dish = $database->select("tb_dish","*",[
             "id_dish" => $_GET["id"],

@@ -35,7 +35,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camping Website</title>
+    <title>Results</title>
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,11 +50,12 @@
     <header>
         <nav class="top-nav">
 
-            <a class="logo" href="./Homepage.html"><img src="./imgs/imgsMenu/Logo Kimchis 1imgs2.png" alt="Kimchis logo"><span>KIMCHIS</span> </a>
+            <a class="logo" href="./Homepage.php"><img src="./imgs/imgsMenu/Logo Kimchis 1imgs2.png" alt="Kimchis logo"><span>KIMCHIS</span> </a>
 
             <ul class="nav-list">
                 <li><a class="nav-list-link" href="./Homepage.php">Homepage</a></li>
                 <li><a class="nav-list-link" href="./Menu.php">Menu</a></li>
+                <li><a class="nav-list-link" href="./admin">Administrator</a></li>
                 <?php 
                         session_start();
                         if(isset($_SESSION["isLoggedIn"])){
